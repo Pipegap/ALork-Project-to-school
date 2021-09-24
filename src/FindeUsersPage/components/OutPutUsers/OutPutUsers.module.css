@@ -16,3 +16,15 @@
 .container {
     padding: 13px;
 }
+
+.pageCount {
+
+}
+
+.onePageItem {
+
+}
+
+.selectedItem {
+    background-color: red;
+}

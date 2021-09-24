@@ -4,8 +4,9 @@ import {NavLink} from "react-router-dom";
 import axios from "axios";
 import OneExUser from "./OneExUser/OneExUser";
 
-let searchArea = React.createRef();
-
+let searchArea = React.createRef(),
+    total = 0,
+    pagesArr = [];
 
 class OutPutUsers extends React.Component{
 
@@ -28,9 +29,25 @@ class OutPutUsers extends React.Component{
         return oneUser;
     }
 
+    pagesCountNum = this.props.totalCountUsers / this.props.pageCount;
+
+    pagesCount = () => {
+        for (let i = 1; i <= this.pagesCountNum; i++) {
+            this.pagesCountNum--;
+            total++;
+            pagesArr.push(total);
+        };
+        const showPagesCount = pagesArr.map(el => {
+            return <button className={this.props.selectedPage === el && classes.selectedItem}>{el}</button>
+        });
+        return showPagesCount;
+    }
     render() {
         return (
             <div className={classes.container}>
+                <div className={classes.pageCount}>
+                    {this.pagesCount()}
+                </div>
                 {this.oneUser()}
                 <div className={classes.search}>
                     <input ref={searchArea} type="text" placeholder='Search' onChange={this.onChange} value={this.props.dataBaseUserPage.textSearch}/>

@@ -6,7 +6,10 @@ const searchNewText = 'SEARCH_NEW_TEXT',
 
 const initState = {
     userPage: [],
+    pageCount: 5,
+    totalUsers: 25,
     textSearch: '',
+    selectedPage: 2,
 };
 
 

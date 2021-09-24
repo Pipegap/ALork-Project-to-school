@@ -11,7 +11,10 @@ import OutPutUsers from "./OutPutUsers/OutPutUsers";
 let mapStateToProps = (state) => {
     return {
         dataBaseUserPage: state.usersPage,
-    }
+        pageCount: state.usersPage.pageCount,
+        totalCountUsers: state.usersPage.totalUsers,
+        selectedPage: state.usersPage.selectedPage,
+    };
 };
 
 let mapDispatchToProps = (dispatch) => {
