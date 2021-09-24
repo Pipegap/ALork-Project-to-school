@@ -1,0 +1,18 @@
+.allDialogers {
+    padding: 0 60px;
+}
+
+.active{
+    color: gold;
+}
+
+
+.active div {
+    background-color: #1a2025;
+    border-radius: 20px;
+}
+
+.active .photoBlockDialoger {
+    background-color: #1a2025;
+    border-radius: 20px;
+}

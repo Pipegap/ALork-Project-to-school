@@ -1,0 +1,25 @@
+.MakePosts {
+    position: relative;
+    top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.item {
+    color: blue;
+}
+
+.inputPost {
+    background-color: #1a2025;
+    color: white;
+    font-family: Lucida Console;
+}
+
+.btnSend {
+    color: white;
+    padding: 10px 20px;
+    border-radius: 29px;
+    background-color: #1a2025;
+    cursor: pointer;
+}

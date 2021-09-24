@@ -1,0 +1,30 @@
+.header {
+    grid-area: head;
+    background-color: #1a2025;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 50px;
+    position: relative;
+    left: 80px;
+}
+
+.userAva {
+    width: 50px;
+    border-radius: 30px;
+}
+
+.logo_name {
+    color: white;
+    font-size: 20px;
+    font-family: Arial;
+}
+
+.avatarLink {
+    position: relative;
+    right: 80px;
+}

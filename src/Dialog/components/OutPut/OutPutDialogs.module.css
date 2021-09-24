@@ -1,0 +1,12 @@
+.mainBlockDialogs{
+    display: grid;
+    grid-template-columns: 2fr 2.5fr;
+    position: relative;
+    top: 25px;
+}
+
+
+.item span{
+    position: relative;
+    left: 140px;
+}

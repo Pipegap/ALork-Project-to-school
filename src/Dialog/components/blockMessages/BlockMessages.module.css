@@ -1,0 +1,33 @@
+.blockInput {
+    position: relative;
+    text-align: center;
+    top: 15px;
+}
+
+.blockInput input {
+    background-color: #1a2025;
+    border: 0.1px solid #060809;
+    width: 515px;
+    height: 41px;
+    border-radius: 10px;
+    position: relative;
+    left: 8px;
+    color: white;
+    font-family: Lucida Console;
+
+}
+
+.blockInput img {
+    width: 45px;
+    position: relative;
+    bottom: 43px;
+    left: 225px;
+}
+
+.noneDisplay {
+    display: none;
+}
+
+.sendImg:hover {
+    cursor: pointer;
+}

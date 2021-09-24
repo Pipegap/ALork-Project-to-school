@@ -1,0 +1,33 @@
+.item {
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item img {
+    width: 50px;
+    border-radius: 22px;
+}
+
+.item span {
+    position: relative;
+    left: 15px;
+    color: white;
+    font-family: Lucida Console;
+}
+
+.item:hover{
+    background-color: #0f1215;
+    border-radius: 20px;
+}
+
+
+.nameContent {
+    display: flex;
+    align-items: center;
+}
+
+.time span {
+    color: #000000;
+}

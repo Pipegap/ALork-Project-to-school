@@ -1,0 +1,46 @@
+.MakePosts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0px;
+    border-radius: 10px;
+}
+
+.MakePosts:hover {
+    background-color: #111518e6;
+}
+
+.item {
+    color: white;
+    font-family: Lucida Console;
+}
+
+.MakePosts img {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+}
+
+.blockPost {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blockCountLikes {
+    display: flex;
+    align-items: center;
+}
+
+.blockCountLikes img {
+    width: 25px;
+    height: 25px;
+    border-radius: 0px;
+    position: relative;
+    bottom: 3px;
+    right: 15px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+

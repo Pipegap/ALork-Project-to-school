@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #222a31;
+  font-family: Arial;
+}
+
+a {
+  text-decoration: none;
+}
+
+.MyApp {
+  display: grid;
+  width: 1200px;
+  margin: 0 auto;
+  grid-template-areas:
+  'head head'
+  'navBar cont'
+  ;
+
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+}
+
+
+.titleBlock {
+  background-color: black;
+  text-align: center;
+  height: 25px;
+  position: absolute;
+  width: 200px;
+}
+
+.titleBlock span {
+  color: white;
+  font-size: 15px;
+  position: relative;
+  top: 3px;
+  font-family: Arial;
+}
+
+.app-wrapper-content {
+  grid-area: cont;
+}
+
+

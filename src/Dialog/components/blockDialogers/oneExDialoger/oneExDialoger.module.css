@@ -1,0 +1,32 @@
+.item {
+    padding: 16px 80px;
+    position: relative;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.item span{
+    color: white;
+    font-size: 28px;
+    text-decoration: none;
+    font-family: Arial;
+    position: relative;
+    right: 60px;
+}
+
+.item img {
+    width: 50px;
+    position: relative;
+    right: 70px;
+    border-radius: 45px;
+}
+
+.item:hover {
+    background-color: #0f1215;
+    border-radius: 20px;
+}
+
+.photoBlockDialoger {
+
+}

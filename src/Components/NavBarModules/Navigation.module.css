@@ -1,0 +1,33 @@
+.navBar {
+    height: 700px   ;
+    grid-area: navBar;
+    background-color: #1a2025;
+}
+
+.item {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-family: Arial;
+    margin-left: 15px;
+    position: relative;
+    top: 0px;
+}
+
+.active {
+    color: #455460;
+}
+
+.item a.active {
+    color: #455460;
+}
+
+.itemBlock {
+    position: relative;
+    top: 40px;
+    padding: 7px 0px;
+}
+
+.itemBlock:hover {
+    background-color: #111518e6;
+}

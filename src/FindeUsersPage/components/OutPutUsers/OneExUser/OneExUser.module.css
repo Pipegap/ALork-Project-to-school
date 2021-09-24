@@ -1,0 +1,75 @@
+.img img {
+    width: 100px;
+    border-radius: 60px;
+    max-height: 200px;
+}
+
+.btnFollow {
+    margin-top: 15px;
+    margin-left: -10px;
+}
+
+.btnFollow a {
+    border-radius: 15px;
+    color: white;
+    padding: 10px 20px;
+    background-color: #0f1215 ;
+}
+
+.btnFollow a:hover {
+    background-color: #000000;
+}
+
+.block {
+    max-width: 830px;
+    margin: auto;
+    padding: 20px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.block:hover {
+    background-color: #1a2025;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+
+.info .container {
+    width: 680px;
+    height: 137px;
+    border-radius: 30px;
+    background-color: #0f1215;
+}
+
+.insideContent {
+    margin: auto;
+    width: 600px;
+    height: 125px;
+    padding: 13px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nameSurnameCity {
+    height: 81px;
+}
+
+.nameSurnameCity span{
+    position: relative;
+    color: #ffffff;
+    font-size: 26px;
+    bottom: 5px;
+}
+
+.nameSurnameCity span:last-child {
+    position: relative;
+    top: 20px;
+}
+
+.ageInfo span{
+    color: #ffffff;
+    font-size: 23px;
+}

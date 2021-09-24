@@ -1,0 +1,44 @@
+.content {
+    grid-area: cont;
+    padding: 15px 135px;
+}
+
+.profileImage {
+    width: 730px;
+    position: relative;
+    top: 2px;
+}
+
+
+.user {
+    position: relative;
+    top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.userAva:hover {
+    background-color: #0f1215;
+}
+.userPhoto {
+    width: 180px;
+}
+
+.info {
+    position: relative;
+    top: 34px;
+}
+
+.nameSurname {
+    position: relative;
+    top: -71px;
+    font-size: 22px;
+    color: white;
+}
+
+.itemNotName {
+    color: black;
+    font-size: 20px;
+}
