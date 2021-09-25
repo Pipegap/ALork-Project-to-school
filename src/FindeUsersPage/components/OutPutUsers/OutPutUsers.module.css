@@ -22,9 +22,20 @@
 }
 
 .onePageItem {
+    margin-left: 5px;
+    margin-top: 10px;
+    background-color: #1a2025;
+    color: white;
+    padding: 3px 15px;
+    border-radius: 8px;
+    transition: .3s all;
+}
 
+onePageItem:hover {
+    padding: 6px 30px;
 }
 
 .selectedItem {
-    background-color: red;
+    color: #45545c;
+    padding: 8px 30px;
 }

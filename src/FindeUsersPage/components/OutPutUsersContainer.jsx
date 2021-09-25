@@ -1,10 +1,8 @@
 import React from "react";
 import {
     changePageBtnActionCreater,
-    followActionCreater,
-    newTextSearchActionCreater, setPageIdActionCreater,
+    newTextSearchActionCreater, setPageIdActionCreater, setTotalCountActionCreater,
     setUsersActionCreater, togleFollowActionCreater,
-    unfollowActionCrater
 } from "../../Redux/reducers/userReducer";
 import {connect} from "react-redux";
 import OutPutUsers from "./OutPutUsers/OutPutUsers";
@@ -34,6 +32,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         changePage: (int) => {
             dispatch(changePageBtnActionCreater(int))
+        },
+        setTotalCount: (totalCount) => {
+            dispatch(setTotalCountActionCreater(totalCount))
         },
     };
 };

@@ -7,12 +7,14 @@ import OneExUser from "./OneExUser/OneExUser";
 let searchArea = React.createRef(),
     total = 0,
     pagesArr = [];
+
 class OutPutUsers extends React.Component{
 
     componentDidMount () {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${this.props.selectedPage}`).then(response => {
             this.props.setUsers(response.data.items);
             this.props.setPageId(response.data.items);
+            // this.props.setTotalCount(response.data.totalCount)
         });
     }
 
@@ -37,7 +39,6 @@ class OutPutUsers extends React.Component{
             this.props.setUsers(response.data.items);
             this.props.setPageId(response.data.items);
         });};
-
     pagesCount = () => {
         pagesArr.length = 0;
         total = 0;
@@ -51,7 +52,7 @@ class OutPutUsers extends React.Component{
             <div className={classes.container}>
                 <div className={classes.pageCount}>
                     {this.pagesCount()}
-                    {pagesArr.map(el => {return <button key={el} className={this.props.selectedPage === el && classes.selectedItem} onClick={() => {this.changePage(el)}}>{el}</button>})}
+                    {pagesArr.map(el => {return <button key={el} className={`${this.props.selectedPage === el && classes.selectedItem} ${classes.onePageItem}`} onClick={() => {this.changePage(el)}}>{el}</button>})}
                 </div>
                 {this.oneUser()}
                 <div className={classes.search}>
