@@ -1,5 +1,6 @@
 import React from "react";
 import {
+    changePageBtnActionCreater,
     followActionCreater,
     newTextSearchActionCreater, setPageIdActionCreater,
     setUsersActionCreater, togleFollowActionCreater,
@@ -30,6 +31,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         setPageId: (arr) => {
             dispatch(setPageIdActionCreater(arr))
+        },
+        changePage: (int) => {
+            dispatch(changePageBtnActionCreater(int))
         },
     };
 };

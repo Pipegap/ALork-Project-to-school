@@ -1,15 +1,16 @@
 const searchNewText = 'SEARCH_NEW_TEXT',
         toggleFollow = 'ToggleFollow',
         setUsers = 'SET_USERS',
-        setPageId = 'SET_PAGE_ID';
+        setPageId = 'SET_PAGE_ID',
+        changePage = 'CHANGE_PAGE';
 
 
 const initState = {
     userPage: [],
     pageCount: 5,
-    totalUsers: 25,
+    totalUsers: 21,
     textSearch: '',
-    selectedPage: 2,
+    selectedPage: 1,
 };
 
 
@@ -40,6 +41,9 @@ const userReducer = (state = initState, action) => {
                 total += 1;
             });
             return copyState;
+        case changePage:
+            copyState.selectedPage = action.int;
+            return copyState;
         default:
             return state;
     }
@@ -52,4 +56,5 @@ export default userReducer;
 export const newTextSearchActionCreater = (text) => ({type:searchNewText, text:text}),
             togleFollowActionCreater = (id) => ({type: toggleFollow, userId: id}),
             setUsersActionCreater = (users) => ({type: setUsers, users: users}),
-            setPageIdActionCreater = (arr) => ({type: setPageId, arr: arr});
+            setPageIdActionCreater = (arr) => ({type: setPageId, arr: arr}),
+            changePageBtnActionCreater = (int) => ({type: changePage, int: int});

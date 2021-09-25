@@ -7,15 +7,15 @@ import OneExUser from "./OneExUser/OneExUser";
 let searchArea = React.createRef(),
     total = 0,
     pagesArr = [];
-
 class OutPutUsers extends React.Component{
 
     componentDidMount () {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users?count=10').then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${this.props.selectedPage}`).then(response => {
             this.props.setUsers(response.data.items);
             this.props.setPageId(response.data.items);
         });
     }
+
 
     onChange = () => {
         let text = searchArea.current.value;
@@ -29,24 +29,29 @@ class OutPutUsers extends React.Component{
         return oneUser;
     }
 
-    pagesCountNum = this.props.totalCountUsers / this.props.pageCount;
+    pagesCountNum = (this.props.totalCountUsers % this.props.pageCount !== 0) ? (this.props.totalCountUsers / this.props.pageCount) + 1 : this.props.totalCountUsers / this.props.pageCount;
+
+    changePage = (int) => {
+        this.props.changePage(int);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${int}`).then(response => {
+            this.props.setUsers(response.data.items);
+            this.props.setPageId(response.data.items);
+        });};
 
     pagesCount = () => {
+        pagesArr.length = 0;
+        total = 0;
         for (let i = 1; i <= this.pagesCountNum; i++) {
-            this.pagesCountNum--;
             total++;
             pagesArr.push(total);
         };
-        const showPagesCount = pagesArr.map(el => {
-            return <button className={this.props.selectedPage === el && classes.selectedItem}>{el}</button>
-        });
-        return showPagesCount;
     }
     render() {
         return (
             <div className={classes.container}>
                 <div className={classes.pageCount}>
                     {this.pagesCount()}
+                    {pagesArr.map(el => {return <button key={el} className={this.props.selectedPage === el && classes.selectedItem} onClick={() => {this.changePage(el)}}>{el}</button>})}
                 </div>
                 {this.oneUser()}
                 <div className={classes.search}>
