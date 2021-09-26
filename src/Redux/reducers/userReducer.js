@@ -8,9 +8,10 @@ const searchNewText = 'SEARCH_NEW_TEXT',
 const initState = {
     userPage: [],
     pageCount: 25,
-    totalUsers: 1256,
+    totalUsers: 963,
     textSearch: '',
     selectedPage: 1,
+    pagesCount : 5,
 };
 
 

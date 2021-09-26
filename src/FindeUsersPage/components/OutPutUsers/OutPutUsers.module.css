@@ -29,6 +29,8 @@
     padding: 3px 15px;
     border-radius: 8px;
     transition: .3s all;
+    cursor: pointer;
+
 }
 
 onePageItem:hover {

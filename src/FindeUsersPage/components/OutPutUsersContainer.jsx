@@ -5,7 +5,71 @@ import {
     setUsersActionCreater, togleFollowActionCreater,
 } from "../../Redux/reducers/userReducer";
 import {connect} from "react-redux";
-import OutPutUsers from "./OutPutUsers/OutPutUsers";
+import axios from "axios";
+import {NavLink} from "react-router-dom";
+import OneExUser from "./OutPutUsers/OneExUser/OneExUser";
+import OutPutUsers from "./OutPutUsers/OneExUser/OutPutUsers";
+
+class OutPutUsersAPIContainer extends React.Component{
+
+    searchArea = React.createRef();
+    total = 0;
+    pagesArr = [];
+
+    componentDidMount () {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${this.props.selectedPage}`).then(response => {
+            this.props.setUsers(response.data.items);
+            this.props.setPageId(response.data.items);
+            // this.props.setTotalCount(response.data.totalCount)
+        });
+    }
+
+
+    onChange = () => {
+        let text = this.searchArea.current.value;
+        this.props.newTextSearch(text);
+    };
+
+    oneUser = () => {
+        const oneUser = this.props.dataBaseUserPage.userPage.map(el => {
+            return <NavLink to={`/findeUsers/${el.id}`}><OneExUser pageId={el.pageId} key={el.id} followed={el.followed} id={el.id} photos={el.photos} name={el.name} toggleFollow={this.props.toggleFollow}/></NavLink>
+        });
+        return oneUser;
+    }
+
+
+    changePage = (int) => {
+        this.props.changePage(int);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${int}`).then(response => {
+            this.props.setUsers(response.data.items);
+            this.props.setPageId(response.data.items);
+
+        })};
+
+    pagesCountNum = (this.props.totalCountUsers % this.props.pageCount !== 0) ? (this.props.totalCountUsers / this.props.pageCount) + 1 : this.props.totalCountUsers / this.props.pageCount;
+    pagesCount = () => {
+        if (this.pagesArr.length === 0 && this.total === 0) {
+            for (let i = 1; i <= this.pagesCountNum; i++) {
+                this.total++;
+                this.pagesArr.push(this.total);
+            };
+        } else {
+            this.pagesArr.length = 0;
+            this.total = 0;
+            for (let i = 1; i <= this.pagesCountNum; i++) {
+                this.total++;
+                this.pagesArr.push(this.total);
+            };
+        }
+    };
+
+    render() {
+        return (
+            <OutPutUsers pagesCount={this.pagesCount} changePage={this.changePage} oneUser={this.oneUser} onChange={this.onChange} pagesArr={this.pagesArr} searchArea={this.searchArea} selectedPage={this.props.selectedPage} textSearch={this.props.dataBaseUserPage.textSearch}/>
+        );
+    };
+};
+
 
 let mapStateToProps = (state) => {
     return {
@@ -39,7 +103,4 @@ let mapDispatchToProps = (dispatch) => {
     };
 };
 
-let OutPutUsersContainer = connect(mapStateToProps, mapDispatchToProps)(OutPutUsers);
-
-
-export default OutPutUsersContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(OutPutUsersAPIContainer);
