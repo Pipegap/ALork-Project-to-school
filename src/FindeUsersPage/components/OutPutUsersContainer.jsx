@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    changePageBtnActionCreater,
+    changePageBtnActionCreater, clearUserPageActionCreater,
     newTextSearchActionCreater, setPageIdActionCreater, setTotalCountActionCreater,
     setUsersActionCreater, togleFollowActionCreater,
 } from "../../Redux/reducers/userReducer";
@@ -9,6 +9,8 @@ import axios from "axios";
 import {NavLink} from "react-router-dom";
 import OneExUser from "./OutPutUsers/OneExUser/OneExUser";
 import OutPutUsers from "./OutPutUsers/OneExUser/OutPutUsers";
+import preloader from "./../../assets/images/Double Ring-2.1s-200px.svg";
+import classes from "./OutPutPage.module.css"
 
 class OutPutUsersAPIContainer extends React.Component{
 
@@ -27,7 +29,7 @@ class OutPutUsersAPIContainer extends React.Component{
 
     onChange = () => {
         let text = this.searchArea.current.value;
-        this.props.newTextSearch(text);
+         this.props.newTextSearch(text);
     };
 
     oneUser = () => {
@@ -39,6 +41,7 @@ class OutPutUsersAPIContainer extends React.Component{
 
 
     changePage = (int) => {
+        this.props.clearUserPage();
         this.props.changePage(int);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${int}`).then(response => {
             this.props.setUsers(response.data.items);
@@ -65,7 +68,9 @@ class OutPutUsersAPIContainer extends React.Component{
 
     render() {
         return (
-            <OutPutUsers pagesCount={this.pagesCount} changePage={this.changePage} oneUser={this.oneUser} onChange={this.onChange} pagesArr={this.pagesArr} searchArea={this.searchArea} selectedPage={this.props.selectedPage} textSearch={this.props.dataBaseUserPage.textSearch}/>
+            <div>
+                {this.props.dataBaseUserPage.userPage.length !== 0 ? <OutPutUsers pagesCount={this.pagesCount} changePage={this.changePage} oneUser={this.oneUser} onChange={this.onChange} pagesArr={this.pagesArr} searchArea={this.searchArea} selectedPage={this.props.selectedPage} textSearch={this.props.dataBaseUserPage.textSearch}/> : <img className={classes.downloading} src={preloader}/>}
+            </div>
         );
     };
 };
@@ -99,6 +104,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         setTotalCount: (totalCount) => {
             dispatch(setTotalCountActionCreater(totalCount))
+        },
+        clearUserPage: () => {
+            dispatch(clearUserPageActionCreater())
         },
     };
 };

@@ -29,10 +29,11 @@ const profileReducer = (state = initState, action) => {
                 photo: action.linkAvatar,
                 word: state.newPostText,
                 likes: 0,
-                id: state.posts.slice(-1)[0].id + 1,
+                id: state.posts.length,
                 liked: false,
             };
             copyState.posts.push(structureNewPost);
+            debugger;
             copyState.newPostText = '';
             return copyState;
         case newTextPost:

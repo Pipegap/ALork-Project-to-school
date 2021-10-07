@@ -3,7 +3,8 @@ const searchNewText = 'SEARCH_NEW_TEXT',
         setUsers = 'SET_USERS',
         setPageId = 'SET_PAGE_ID',
         changePage = 'CHANGE_PAGE',
-        setTotalCountUsers = 'SET_TOTAL_COUNT';
+        setTotalCountUsers = 'SET_TOTAL_COUNT',
+        clearUserPage = 'CLEAR_USER_PAGE';
 
 const initState = {
     userPage: [],
@@ -48,6 +49,9 @@ const userReducer = (state = initState, action) => {
         case setTotalCountUsers:
             copyState.totalUsers = action.totalCount;
             return copyState;
+        case clearUserPage:
+            copyState.userPage.length = 0;
+            return copyState;
         default:
             return state;
     }
@@ -62,4 +66,5 @@ export const newTextSearchActionCreater = (text) => ({type:searchNewText, text:t
             setUsersActionCreater = (users) => ({type: setUsers, users: users}),
             setPageIdActionCreater = (arr) => ({type: setPageId, arr: arr}),
             changePageBtnActionCreater = (int) => ({type: changePage, int: int}),
-            setTotalCountActionCreater = (totalCount) => ({type: setTotalCountUsers, totalCount: totalCount});
+            setTotalCountActionCreater = (totalCount) => ({type: setTotalCountUsers, totalCount: totalCount}),
+            clearUserPageActionCreater = () => ({type: clearUserPage});
