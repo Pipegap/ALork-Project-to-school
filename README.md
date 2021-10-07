@@ -1,10 +1,8 @@
-# Getting Started with Create React App
+# Info. What is it about ?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is my personaly project for scholl by informatics class
 
 ## Available Scripts
-
-In the project directory, you can run:
 
 ### `npm start`
 
