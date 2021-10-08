@@ -47,8 +47,8 @@ const dialogsReducer = (state = initState, action) => {
 };
 
 
-export const createNewMessageActionCreater = (avatarUser) => ({type: createNewMessage, avatarUser: avatarUser});
-export const newTextMessageActionCreater = (text) => ({type: newTextMessage, newContent: text});
+export const createNewMessageAC = (avatarUser) => ({type: createNewMessage, avatarUser: avatarUser});
+export const newTextMessageAC = (text) => ({type: newTextMessage, newContent: text});
 
 
 export default dialogsReducer;

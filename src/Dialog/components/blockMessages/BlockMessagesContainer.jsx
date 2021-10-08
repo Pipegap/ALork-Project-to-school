@@ -1,7 +1,42 @@
 import React from "react";
-import {createNewMessageActionCreater, newTextMessageActionCreater} from "../../../Redux/reducers/dialogsReducer";
-import BlockMessages from "./BlockMessages";
+import {createNewMessageAC, newTextMessageAC} from "../../../Redux/reducers/dialogsReducer";
 import {connect} from "react-redux";
+import classes from "./BlockMessages.module.css";
+import OneExMessage from "./oneExMessage/oneExMessage";
+import OutPutBlockMessages from "./oneExMessage/OutPutBlockMessages";
+
+
+class BlockMessagesClassComponent extends React.Component{
+    makeRef = React.createRef();
+    sendImg = React.createRef();
+
+
+    onChange = () => {
+        let text = this.makeRef.current.value;
+        this.props.newTextMessageAC(text);
+        (text === "") ? this.sendImg.current.classList.add(classes.noneDisplay) : this.sendImg.current.classList.remove(classes.noneDisplay);
+
+    };
+
+    showMessages = () => {
+        const messagesItems = this.props.dataBase.dialogsPage.messages.map(el => {
+            return <OneExMessage photoDialoger={el.photoDialoger} content={el.content} key={el.id} id={el.id} timeMessage={el.time}/>;
+        });
+        return messagesItems;
+    }
+
+    createNewMsg = () => {
+        let avatarUser = this.props.dataBase.profilePage.infoUser[0].photo;
+        this.props.createNewMessageAC(avatarUser);
+        this.sendImg.current.classList.add(classes.noneDisplay);
+    };
+
+    render() {
+        return (
+            <OutPutBlockMessages dataBase={this.props.dataBase} showMessages={this.showMessages} onChange={this.onChange} createNewMsg={this.createNewMsg} makeRef={this.makeRef} sendImg={this.sendImg}/>
+        )
+    }
+}
 
 
 let mapStateToProps = (state) => {
@@ -10,13 +45,8 @@ let mapStateToProps = (state) => {
     };
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        createNewMsg: (avatarUser) => {dispatch(createNewMessageActionCreater(avatarUser))},
-        onChange: (text) => {dispatch(newTextMessageActionCreater(text))},
-    };
-};
 
-let BlockMessagesContainer = connect(mapStateToProps, mapDispatchToProps)(BlockMessages);
+
+let BlockMessagesContainer = connect(mapStateToProps, {createNewMessageAC, newTextMessageAC,})(BlockMessagesClassComponent);
 
 export default BlockMessagesContainer;

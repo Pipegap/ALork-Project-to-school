@@ -1,8 +1,8 @@
 import React from "react";
 import {
-    changePageBtnActionCreater, clearUserPageActionCreater,
-    newTextSearchActionCreater, setPageIdActionCreater, setTotalCountActionCreater,
-    setUsersActionCreater, togleFollowActionCreater,
+    changePageBtnAC, clearUserPageAC,
+    newTextSearchAC, setPageIdAC,
+    setUsersAC, toggleFollowAC,
 } from "../../Redux/reducers/userReducer";
 import {connect} from "react-redux";
 import axios from "axios";
@@ -20,8 +20,8 @@ class OutPutUsersAPIContainer extends React.Component{
 
     componentDidMount () {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${this.props.selectedPage}`).then(response => {
-            this.props.setUsers(response.data.items);
-            this.props.setPageId(response.data.items);
+            this.props.setUsersAC(response.data.items);
+            this.props.setPageIdAC(response.data.items);
             // this.props.setTotalCount(response.data.totalCount)
         });
     }
@@ -29,23 +29,23 @@ class OutPutUsersAPIContainer extends React.Component{
 
     onChange = () => {
         let text = this.searchArea.current.value;
-         this.props.newTextSearch(text);
+         this.props.newTextSearchAC(text);
     };
 
     oneUser = () => {
         const oneUser = this.props.dataBaseUserPage.userPage.map(el => {
-            return <NavLink to={`/findeUsers/${el.id}`}><OneExUser pageId={el.pageId} key={el.id} followed={el.followed} id={el.id} photos={el.photos} name={el.name} toggleFollow={this.props.toggleFollow}/></NavLink>
+            return <NavLink to={`/findeUsers/${el.id}`}><OneExUser pageId={el.pageId} key={el.id} followed={el.followed} id={el.id} photos={el.photos} name={el.name} toggleFollow={this.props.toggleFollowAC}/></NavLink>
         });
         return oneUser;
     }
 
 
     changePage = (int) => {
-        this.props.clearUserPage();
-        this.props.changePage(int);
+        this.props.clearUserPageAC();
+        this.props.changePageBtnAC(int);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${int}`).then(response => {
-            this.props.setUsers(response.data.items);
-            this.props.setPageId(response.data.items);
+            this.props.setUsersAC(response.data.items);
+            this.props.setPageIdAC(response.data.items);
 
         })};
 
@@ -85,30 +85,6 @@ let mapStateToProps = (state) => {
     };
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        newTextSearch: (text) => {
-            dispatch(newTextSearchActionCreater(text))
-        },
-        toggleFollow: (id) => {
-            dispatch(togleFollowActionCreater(id))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersActionCreater(users));
-        },
-        setPageId: (arr) => {
-            dispatch(setPageIdActionCreater(arr))
-        },
-        changePage: (int) => {
-            dispatch(changePageBtnActionCreater(int))
-        },
-        setTotalCount: (totalCount) => {
-            dispatch(setTotalCountActionCreater(totalCount))
-        },
-        clearUserPage: () => {
-            dispatch(clearUserPageActionCreater())
-        },
-    };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutPutUsersAPIContainer);
+
+export default connect(mapStateToProps, {newTextSearchAC, toggleFollowAC, setUsersAC, setPageIdAC, changePageBtnAC, clearUserPageAC})(OutPutUsersAPIContainer);
