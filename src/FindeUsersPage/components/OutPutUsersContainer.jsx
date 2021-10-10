@@ -34,7 +34,10 @@ class OutPutUsersAPIContainer extends React.Component{
 
     oneUser = () => {
         const oneUser = this.props.dataBaseUserPage.userPage.map(el => {
-            return <NavLink to={`/findeUsers/${el.id}`}><OneExUser pageId={el.pageId} key={el.id} followed={el.followed} id={el.id} photos={el.photos} name={el.name} toggleFollow={this.props.toggleFollowAC}/></NavLink>
+            return <NavLink to={`/findeUsers/${el.id}`}><OneExUser pageId={el.pageId} key={el.id}
+                                                                   followed={el.followed} id={el.id}
+                                                                   photos={el.photos} name={el.name}
+                                                                   toggleFollow={this.props.toggleFollowAC}/></NavLink>
         });
         return oneUser;
     }
@@ -49,7 +52,8 @@ class OutPutUsersAPIContainer extends React.Component{
 
         })};
 
-    pagesCountNum = (this.props.totalCountUsers % this.props.pageCount !== 0) ? (this.props.totalCountUsers / this.props.pageCount) + 1 : this.props.totalCountUsers / this.props.pageCount;
+    pagesCountNum = (this.props.totalCountUsers % this.props.pageCount !== 0) ? (this.props.totalCountUsers / this.props.pageCount) + 1 :
+        this.props.totalCountUsers / this.props.pageCount;
     pagesCount = () => {
         if (this.pagesArr.length === 0 && this.total === 0) {
             for (let i = 1; i <= this.pagesCountNum; i++) {
@@ -69,7 +73,11 @@ class OutPutUsersAPIContainer extends React.Component{
     render() {
         return (
             <div>
-                {this.props.dataBaseUserPage.userPage.length !== 0 ? <OutPutUsers pagesCount={this.pagesCount} changePage={this.changePage} oneUser={this.oneUser} onChange={this.onChange} pagesArr={this.pagesArr} searchArea={this.searchArea} selectedPage={this.props.selectedPage} textSearch={this.props.dataBaseUserPage.textSearch}/> : <img className={classes.downloading} src={preloader}/>}
+                {this.props.dataBaseUserPage.userPage.length !== 0 ? <OutPutUsers
+                    pagesCount={this.pagesCount} changePage={this.changePage}
+                    oneUser={this.oneUser} onChange={this.onChange}
+                    pagesArr={this.pagesArr} searchArea={this.searchArea}
+                    selectedPage={this.props.selectedPage} textSearch={this.props.dataBaseUserPage.textSearch}/> : <img className={classes.downloading} src={preloader}/>}
             </div>
         );
     };

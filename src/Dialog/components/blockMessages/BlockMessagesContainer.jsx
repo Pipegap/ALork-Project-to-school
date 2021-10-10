@@ -33,7 +33,12 @@ class BlockMessagesClassComponent extends React.Component{
 
     render() {
         return (
-            <OutPutBlockMessages dataBase={this.props.dataBase} showMessages={this.showMessages} onChange={this.onChange} createNewMsg={this.createNewMsg} makeRef={this.makeRef} sendImg={this.sendImg}/>
+            <OutPutBlockMessages
+                dataBase={this.props.dataBase}
+                showMessages={this.showMessages}
+                onChange={this.onChange}
+                createNewMsg={this.createNewMsg}
+                makeRef={this.makeRef} sendImg={this.sendImg}/>
         )
     }
 }

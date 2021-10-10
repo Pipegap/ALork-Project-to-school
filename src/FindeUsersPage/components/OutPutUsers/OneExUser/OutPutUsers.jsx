@@ -6,7 +6,9 @@ function OutPutUsers(props) {
         <div className={classes.container}>
             <div className={classes.pageCount}>
                 {props.pagesCount()}
-                {props.pagesArr.map(el => {return <button key={el} className={`${props.selectedPage === el && classes.selectedItem} ${classes.onePageItem}`} onClick={() => {props.changePage(el)}}>{el}</button>})}
+                {props.pagesArr.map(el => {return <button key={el}
+                                                          className={`${props.selectedPage === el && classes.selectedItem} ${classes.onePageItem}`}
+                                                          onClick={() => {props.changePage(el)}}>{el}</button>})}
             </div>
             {props.oneUser()}
             <div className={classes.search}>

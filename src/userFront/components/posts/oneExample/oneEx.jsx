@@ -1,16 +1,15 @@
 import React from "react";
 import oneEx from './forOneEx.module.css';
+import {addLikeAC} from "../../../../Redux/reducers/profileReducer";
 
 function OneEx (props) {
 
     const onClick = () => {
-        (props.liked === false) ? props.addLike(props.id) : props.deleteLike(props.id);
+        props.toggleLike(props.id);
     };
-
     const deletePost = () => {
         props.deletePost(props.id);
     };
-
     return (
         <div className={oneEx.MakePosts}>
             <a href="#"><img src={props.img} alt=""/></a>

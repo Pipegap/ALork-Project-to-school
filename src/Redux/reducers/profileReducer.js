@@ -1,12 +1,29 @@
 const newTextPost = 'NEW_TEXT_POST',
     createNewPost = 'CREATE_NEW_POST',
-    addLike = 'ADD_LIKE',
-    deleteLike = 'DELETE_LIKE',
-    deletePost = 'DELETE_POST';
+    toggleLike = 'ADD_LIKE',
+    deletePost = 'DELETE_POST',
+    setOthUserProfile = 'SET_USER_OTH_PROFILE';
 
 let initState = {
         infoUser: [
-            {pageProfile: 'https://cdn-images-1.medium.com/fit/t/1600/480/1*tmEky1_UkC1_kzo8fRQdWg.jpeg', name: 'Walter', surname: 'White', age: 50, city: 'Албукерка', info: 'I am a cooker of methamphetamine', photo: 'https://pbs.twimg.com/profile_images/801633757228912640/XJdZjO7T.jpg',}],
+            {
+                aboutMe: 'You all know who I am!',
+                contacts:{facebook:null, website:null, vk: 'https://vk.com/id291161307', },
+                fullName: 'Walter White',
+                neededInJob: false,
+                photos:{small:'https://cdnb.artstation.com/p/assets/images/images/000/987/927/large/ricky-martinez-walter-white-by-sparatik-d5ged5r.jpg?1443931882'},
+            }],
+        otherUserInfo : [
+            {
+                aboutMe: null,
+                contacts: {facebook: null, website:null, vk:null, instagram:null},
+                fullName: null,
+                neededInJob: null,
+                photos: {
+                    small: null, large: null,
+                },
+            },
+        ],
         posts: [
             {photo: 'https://vraki.net/sites/default/files/inline/images/3_76.jpg', word: "SOMEONE'S POST", likes: 9, id: 0, liked:false,},
             {photo: 'https://pbs.twimg.com/profile_images/801633757228912640/XJdZjO7T.jpg', word: 'MY POST', likes: 4, id: 1, liked:false},
@@ -33,19 +50,19 @@ const profileReducer = (state = initState, action) => {
                 liked: false,
             };
             copyState.posts.push(structureNewPost);
-            debugger;
             copyState.newPostText = '';
             return copyState;
         case newTextPost:
             copyState.newPostText = action.newContent;
             return copyState;
-        case addLike:
-            copyState.posts[action.id].likes++;
-            copyState.posts[action.id].liked = true;
-            return copyState;
-        case deleteLike:
-            copyState.posts[action.id].likes--;
-            copyState.posts[action.id].liked = false;
+        case toggleLike:
+            if (copyState.posts[action.id].liked !== true) {
+                copyState.posts[action.id].likes++;
+                copyState.posts[action.id].liked = true;
+            } else {
+                copyState.posts[action.id].likes--;
+                copyState.posts[action.id].liked = false;
+            }
             return copyState;
         case deletePost:
             let afterDeleted = copyState.posts.slice(action.id + 1);
@@ -55,16 +72,20 @@ const profileReducer = (state = initState, action) => {
             });
             copyState.posts.splice(action.id, 1);
             return copyState;
+        case setOthUserProfile:
+            copyState.otherUserInfo.length = 0;
+            copyState.otherUserInfo.push(action.profileInfo);
+            return copyState;
         default:
             return state;
     };
 };
 
 
-export const addPostActionCreater = (avatarUser) => ({type: createNewPost, linkAvatar: avatarUser}),
-            newTextPostActionCreater = (text) => ({type: newTextPost, newContent: text}),
-            addLikeActionCreater = (userId) => ({type: addLike, id: userId}),
-            deleteLikeActionCreater = (userId) => ({type: deleteLike, id: userId,}),
-            deletePostActionCreater = (postId) => ({type: deletePost, id: postId});
+export const addPostAC = (avatarUser) => ({type: createNewPost, linkAvatar: avatarUser}),
+            newTextPostAC = (text) => ({type: newTextPost, newContent: text}),
+            toggleLikeAC = (userId) => ({type: toggleLike, id: userId}),
+            deletePostAC = (postId) => ({type: deletePost, id: postId}),
+            setOthUserProfileAC = (profileInfo) => ({type: setOthUserProfile, profileInfo: profileInfo});
 
 export default profileReducer;
