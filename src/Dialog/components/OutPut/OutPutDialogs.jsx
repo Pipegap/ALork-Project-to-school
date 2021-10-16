@@ -1,12 +1,13 @@
 import React from "react";
 import classes from './OutPutDialogs.module.css';
-import BlockDialogers from "../blockDialogers/blockDialogers";
+import BlockDialogers from "../blockDialogers/BlockDialogersContainer/blockDialogers";
 import BlockMessagesContainer from "../blockMessages/BlockMessagesContainer";
+import BlockDialogersContainer from "../blockDialogers/BlockDialogersContainer/BlockDialogersContainer";
 
-function Dialog (props) {
+function Dialog () {
     return (
         <div className={classes.mainBlockDialogs}>
-            <BlockDialogers dataBaseDialogers={props.store.getState().dialogsPage}/>
+            <BlockDialogersContainer/>
             <BlockMessagesContainer />
         </div>
     );

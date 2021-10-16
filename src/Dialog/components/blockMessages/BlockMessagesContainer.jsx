@@ -26,7 +26,7 @@ class BlockMessagesClassComponent extends React.Component{
     }
 
     createNewMsg = () => {
-        let avatarUser = this.props.dataBase.profilePage.infoUser[0].photo;
+        let avatarUser = this.props.dataBase.profilePage.infoUser[0].photos.small;
         this.props.createNewMessageAC(avatarUser);
         this.sendImg.current.classList.add(classes.noneDisplay);
     };

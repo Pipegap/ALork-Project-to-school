@@ -7,8 +7,8 @@ const newTextPost = 'NEW_TEXT_POST',
 let initState = {
         infoUser: [
             {
-                aboutMe: 'You all know who I am!',
-                contacts:{facebook:null, website:null, vk: 'https://vk.com/id291161307', },
+                aboutMe: "You're god damn right!!",
+                contacts:[{value: 'https://www.facebook.com/profile.php?id=100014995753987', name: 'FaceBook'}, {value: null, name: 'Website'}, {value: 'https://vk.com/id291161307', name: 'VK'}, {value: 'https://www.instagram.com/alexseishuykin/', name: 'Instagram'}],
                 fullName: 'Walter White',
                 neededInJob: false,
                 photos:{small:'https://cdnb.artstation.com/p/assets/images/images/000/987/927/large/ricky-martinez-walter-white-by-sparatik-d5ged5r.jpg?1443931882'},
@@ -26,9 +26,9 @@ let initState = {
         ],
         posts: [
             {photo: 'https://vraki.net/sites/default/files/inline/images/3_76.jpg', word: "SOMEONE'S POST", likes: 9, id: 0, liked:false,},
-            {photo: 'https://pbs.twimg.com/profile_images/801633757228912640/XJdZjO7T.jpg', word: 'MY POST', likes: 4, id: 1, liked:false},
+            {photo: 'https://cdnb.artstation.com/p/assets/images/images/000/987/927/large/ricky-martinez-walter-white-by-sparatik-d5ged5r.jpg?1443931882', word: 'MY POST', likes: 4, id: 1, liked:false},
             {photo: 'https://vraki.net/sites/default/files/inline/images/3_76.jpg', word: "SOMEONE'S POST", likes: 5, id: 2, liked:false},
-            {photo: 'https://pbs.twimg.com/profile_images/801633757228912640/XJdZjO7T.jpg', word: 'MY POST', likes: 2, id: 3, liked:false},
+            {photo: 'https://cdnb.artstation.com/p/assets/images/images/000/987/927/large/ricky-martinez-walter-white-by-sparatik-d5ged5r.jpg?1443931882', word: 'MY POST', likes: 2, id: 3, liked:false},
             {photo: 'https://vraki.net/sites/default/files/inline/images/3_76.jpg', word: 'SOMEONE\'S POST', likes: 8, id: 4, liked:false},
         ],
         newPostText: '',

@@ -9,7 +9,7 @@ class MakePostsClassComponent extends React.Component{
     getContentPost = React.createRef();
 
     onClick = () => {
-        let avatarUser = this.props.dataBaseProfilePage.infoUser[0].photo;
+        let avatarUser = this.props.dataBaseProfilePage.infoUser[0].photos.small;
         (this.getContentPost.current.value !== '') ? this.props.addPostAC(avatarUser) : alert('This post has no anything !');
     };
 

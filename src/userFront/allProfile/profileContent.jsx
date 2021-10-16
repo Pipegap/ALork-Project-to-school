@@ -6,7 +6,7 @@ import InfoProfileContainer from "./OutPutInfoProfileContainer/InfoProfileContai
 
 function ProfileContent(props) {
 
-    const profilePageItem = props.store.getState().profilePage.infoUser.map(page => {
+    const profilePageItem = props.infoUser.map(page => {
         return <img src={page.pageProfile}
                     className='profileImage' alt=""/>
     });

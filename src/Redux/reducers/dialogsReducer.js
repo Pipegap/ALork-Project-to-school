@@ -9,12 +9,12 @@ let initState = {
             {photo: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-48.jpg', name: 'Alexandr', id: 4},
         ],
         messages: [
-            {id: 1, content: 'HI', photoDialoger:'https://www.ejin.ru/wp-content/uploads/2018/10/kartinki_volka_na_avu_04.jpg', time: '18:35',},
-            {id: 2, content: "What's up ?", photoDialoger:'https://pbs.twimg.com/profile_images/801633757228912640/XJdZjO7T.jpg', time: '18:38',},
+            {id: 1, content: 'HI', photoDialoger:'https://cdnb.artstation.com/p/assets/images/images/000/987/927/large/ricky-martinez-walter-white-by-sparatik-d5ged5r.jpg?1443931882', time: '18:35',},
+            {id: 2, content: "What's up ?", photoDialoger:'https://cdnb.artstation.com/p/assets/images/images/000/987/927/large/ricky-martinez-walter-white-by-sparatik-d5ged5r.jpg?1443931882', time: '18:38',},
             {id: 3, content: 'I am pretty good', photoDialoger:'https://www.ejin.ru/wp-content/uploads/2018/10/kartinki_volka_na_avu_04.jpg', time: '18:39',},
             {id: 4, content: 'Are you finishing the dialogers page?', photoDialoger:'https://www.ejin.ru/wp-content/uploads/2018/10/kartinki_volka_na_avu_04.jpg', time: '18:39',},
-            {id: 5, content: 'Yes, I am. Now I am working with messages. I think it is gonna the last part of this page. Maybe It is so just for a while)', photoDialoger:'https://pbs.twimg.com/profile_images/801633757228912640/XJdZjO7T.jpg', time: '18:45',},
-            {id: 6, content: "I need your help. Let's make a talk in the evening!", photoDialoger:'https://pbs.twimg.com/profile_images/801633757228912640/XJdZjO7T.jpg', time: '06:00',},
+            {id: 5, content: 'Yes, I am. Now I am working with messages. I think it is gonna the last part of this page. Maybe It is so just for a while)', photoDialoger:'https://cdnb.artstation.com/p/assets/images/images/000/987/927/large/ricky-martinez-walter-white-by-sparatik-d5ged5r.jpg?1443931882', time: '18:45',},
+            {id: 6, content: "I need your help. Let's make a talk in the evening!", photoDialoger:'https://cdnb.artstation.com/p/assets/images/images/000/987/927/large/ricky-martinez-walter-white-by-sparatik-d5ged5r.jpg?1443931882', time: '06:00',},
         ],
         textNewMessage: '',
 };

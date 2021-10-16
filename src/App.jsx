@@ -17,15 +17,15 @@ function App (props) {
     return (
         <BrowserRouter>
             <div className="MyApp">
-                <Header/>
+                <Header store={props.store}/>
                 <Nav navSate={props.store.getState().navBar}/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialog store={props.store}/>}/>
-                    <Route path='/profile' render={() => <ProfileContentContainer store={props.store}/>}/>
+                    <Route path='/dialogs' render={() => <Dialog />}/>
+                    <Route path='/profile' render={() => <ProfileContentContainer />}/>
                     <Route path='/news' component={OutPutNews}/>
                     <Route path='/friends' component={OutPutFriends}/>
                     <Route path='/musik' component={OutPutMusik}/>
-                    <Route path='/findeUsers' render={() => <OutPutPage store={props.store}/>}/>
+                    <Route path='/findeUsers' render={() => <OutPutPage />}/>
                     <Route path='/settings' component={OutPutSettings}/>
                 </div>
             </div>

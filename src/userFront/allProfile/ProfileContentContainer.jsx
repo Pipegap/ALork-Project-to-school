@@ -14,13 +14,14 @@ class ProfileContentContainer extends React.Component{
 
     render() {
         return (
-            <ProfileContent {...this.props} otherUserInfo={this.props.otherUserInfo}/>
+            <ProfileContent infoUser={this.props.infoUser} otherUserInfo={this.props.otherUserInfo}/>
         )
     }
 };
 
 const mapStateToProps = (state) => {
     return {
+        infoUser: state.profilePage.infoUser,
         othUserInfo: state.profilePage.otherUserInfo,
     }
 }
