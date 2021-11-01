@@ -14,6 +14,7 @@ import ProfileContentContainer from "./userFront/allProfile/ProfileContentContai
 
 
 function App (props) {
+
     return (
         <BrowserRouter>
             <div className="MyApp">
@@ -21,7 +22,7 @@ function App (props) {
                 <Nav navSate={props.store.getState().navBar}/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <Dialog />}/>
-                    <Route path='/profile' render={() => <ProfileContentContainer />}/>
+                    <Route path='/profile/:userId?' render={() => <ProfileContentContainer />}/>
                     <Route path='/news' component={OutPutNews}/>
                     <Route path='/friends' component={OutPutFriends}/>
                     <Route path='/musik' component={OutPutMusik}/>

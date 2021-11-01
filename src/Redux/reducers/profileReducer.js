@@ -4,15 +4,9 @@ const newTextPost = 'NEW_TEXT_POST',
     deletePost = 'DELETE_POST',
     setOthUserProfile = 'SET_USER_OTH_PROFILE';
 
+
 let initState = {
-        infoUser: [
-            {
-                aboutMe: "You're god damn right!!",
-                contacts:[{value: 'https://www.facebook.com/profile.php?id=100014995753987', name: 'FaceBook'}, {value: null, name: 'Website'}, {value: 'https://vk.com/id291161307', name: 'VK'}, {value: 'https://www.instagram.com/alexseishuykin/', name: 'Instagram'}],
-                fullName: 'Walter White',
-                neededInJob: false,
-                photos:{small:'https://cdnb.artstation.com/p/assets/images/images/000/987/927/large/ricky-martinez-walter-white-by-sparatik-d5ged5r.jpg?1443931882'},
-            }],
+        infoUser: [],
         otherUserInfo : [
             {
                 aboutMe: null,
@@ -73,8 +67,8 @@ const profileReducer = (state = initState, action) => {
             copyState.posts.splice(action.id, 1);
             return copyState;
         case setOthUserProfile:
-            copyState.otherUserInfo.length = 0;
-            copyState.otherUserInfo.push(action.profileInfo);
+            copyState.infoUser.length = 0;
+            copyState.infoUser.push(action.profileInfo);
             return copyState;
         default:
             return state;

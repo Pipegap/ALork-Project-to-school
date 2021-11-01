@@ -6,15 +6,9 @@ import InfoProfileContainer from "./OutPutInfoProfileContainer/InfoProfileContai
 
 function ProfileContent(props) {
 
-    const profilePageItem = props.infoUser.map(page => {
-        return <img src={page.pageProfile}
-                    className='profileImage' alt=""/>
-    });
-
     return (
         <div className='content'>
-            {profilePageItem}
-            <InfoProfileContainer otherUserInfo={props.otherUserInfo}/>
+            <InfoProfileContainer showContacts={props.showContacts}/>
             <MakePostContainer />
             <OtherMyPostsContainer />
         </div>
