@@ -14,7 +14,7 @@ class ProfileContentContainer extends React.Component{
     }
     render() {
         return (
-            <ProfileContent showContacts={this.showContacts}/>
+            <ProfileContent />
         )
     }
 };

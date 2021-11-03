@@ -1,6 +1,5 @@
 import React from "react";
 import './App.css';
-import Header from "./Components/HeaderModules/header.jsx";
 import Nav from "./Components/NavBarModules/navigation.jsx";
 import Dialog from "./Dialog/components/OutPut/OutPutDialogs";
 import {BrowserRouter, Route} from "react-router-dom";
@@ -10,6 +9,7 @@ import OutPutSettings from "./Settings/components/OutPut/OutPutSettings";
 import OutPutFriends from './Friends/components/OutPutFriends/OutPutFriends';
 import OutPutPage from "./FindeUsersPage/components/OutPutPage";
 import ProfileContentContainer from "./userFront/allProfile/ProfileContentContainer";
+import HeaderCC from "./Components/HeaderModules/HeaderContainer/HeaderContainer";
 
 
 
@@ -18,7 +18,7 @@ function App (props) {
     return (
         <BrowserRouter>
             <div className="MyApp">
-                <Header store={props.store}/>
+                <HeaderCC />
                 <Nav navSate={props.store.getState().navBar}/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <Dialog />}/>

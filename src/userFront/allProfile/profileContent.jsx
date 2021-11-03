@@ -8,7 +8,7 @@ function ProfileContent(props) {
 
     return (
         <div className='content'>
-            <InfoProfileContainer showContacts={props.showContacts}/>
+            <InfoProfileContainer />
             <MakePostContainer />
             <OtherMyPostsContainer />
         </div>

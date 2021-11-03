@@ -7,22 +7,6 @@ function InfoProfile(props) {
         return <img src={preloader} alt=""/>
     }
 
-    let finalContactsFormat = [];
-
-    const showContacts = (obj, array) => {
-        for (let key in obj) {
-            if (obj[key] !== null) {
-                let oneContact = {
-                    value: obj[key],
-                    name: key,
-                }
-                array.push(oneContact);
-            }
-        }
-        return array.map(el => {
-            return <span>Мой {el.name} - <a href={el.value} target="_blank"><b>{el.name}</b></a><br/></span>
-        })
-    }
 
     return (
         <div className='user'>
@@ -32,9 +16,9 @@ function InfoProfile(props) {
             <div className='info'>
                 <span className='nameSurname'><b>{props.dataBase.fullName}</b></span><br/>
                 <div>
-                    {showContacts(props.dataBase.contacts, finalContactsFormat)}
+                    {props.showContacts(props.dataBase.contacts)}
                 </div>
-                <div className='city itemNotName'>{props.dataBase.neededInJob === false ?
+                <div className='city itemNotName'>{props.dataBase.lookingForAJob === false ?
                     <span>В работе не нуждаюсь</span> : <span>Ищу работу</span>}</div>
                 <br/>
                 <span className='itemNotName'><b>О себе:</b></span>
