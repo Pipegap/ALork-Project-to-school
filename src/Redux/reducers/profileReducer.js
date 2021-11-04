@@ -2,22 +2,13 @@ const newTextPost = 'NEW_TEXT_POST',
     createNewPost = 'CREATE_NEW_POST',
     toggleLike = 'ADD_LIKE',
     deletePost = 'DELETE_POST',
-    setOthUserProfile = 'SET_USER_OTH_PROFILE';
+    setOthUserProfile = 'SET_USER_OTH_PROFILE',
+    setInfoProfileUser = 'SET_INFO_PROFILE_USER';
 
 
 let initState = {
         infoUser: [],
-        otherUserInfo : [
-            {
-                aboutMe: null,
-                contacts: {facebook: null, website:null, vk:null, instagram:null},
-                fullName: null,
-                neededInJob: null,
-                photos: {
-                    small: null, large: null,
-                },
-            },
-        ],
+        otherUserInfo : [],
         posts: [
             {photo: 'https://vraki.net/sites/default/files/inline/images/3_76.jpg', word: "SOMEONE'S POST", likes: 9, id: 0, liked:false,},
             {photo: 'https://cdnb.artstation.com/p/assets/images/images/000/987/927/large/ricky-martinez-walter-white-by-sparatik-d5ged5r.jpg?1443931882', word: 'MY POST', likes: 4, id: 1, liked:false},
@@ -67,7 +58,10 @@ const profileReducer = (state = initState, action) => {
             copyState.posts.splice(action.id, 1);
             return copyState;
         case setOthUserProfile:
-            copyState.infoUser.length = 0;
+            copyState.otherUserInfo.length = 0;
+            copyState.otherUserInfo.push(action.profileInfo);
+            return copyState;
+        case setInfoProfileUser:
             copyState.infoUser.push(action.profileInfo);
             return copyState;
         default:
@@ -80,6 +74,7 @@ export const addPostAC = (avatarUser) => ({type: createNewPost, linkAvatar: avat
             newTextPostAC = (text) => ({type: newTextPost, newContent: text}),
             toggleLikeAC = (userId) => ({type: toggleLike, id: userId}),
             deletePostAC = (postId) => ({type: deletePost, id: postId}),
-            setOthUserProfileAC = (profileInfo) => ({type: setOthUserProfile, profileInfo: profileInfo});
+            setOthUserProfileAC = (profileInfo) => ({type: setOthUserProfile, profileInfo: profileInfo}),
+            setInfoProfileUserAC = (profileInfo) => ({type: setInfoProfileUser, profileInfo: profileInfo});
 
 export default profileReducer;

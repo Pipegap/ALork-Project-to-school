@@ -1,5 +1,6 @@
 import React from "react";
 import preloader from "../../../../assets/images/Double Ring-2.1s-200px.svg"
+import classes from "./InfoProfile.module.css"
 
 function InfoProfile(props) {
 
@@ -14,7 +15,9 @@ function InfoProfile(props) {
                 <img src={props.dataBase.photos.small} alt="аватарка" className='userPhoto'/>
             </div>
             <div className='info'>
-                <span className='nameSurname'><b>{props.dataBase.fullName}</b></span><br/>
+                <div className={classes.blockName}>
+                    <span className={classes.fullName}><b>{props.dataBase.fullName}</b></span><br/>
+                </div>
                 <div>
                     {props.showContacts(props.dataBase.contacts)}
                 </div>

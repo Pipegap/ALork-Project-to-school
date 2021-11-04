@@ -2,24 +2,24 @@ const SET_DATA_FROM_SERVER = 'DATA_FROM_SERVER',
 SET_CHECK_IN = 'SET_CHECK_IN';
 
 const initState = {
-    data : [],
-    checkedIn: null,
+    dataFromServer : [],
+    checkedIn: false,
 };
 
 
 const autherReducer = (state = initState, action) => {
 
     let copyState = {...state};
-    copyState.data = [...state.data];
+    copyState.dataFromServer = [...state.dataFromServer];
 
 
 
     switch (action.type) {
         case SET_DATA_FROM_SERVER:
-            copyState.data.push(action.data);
+            copyState.dataFromServer.push(action.data);
             return copyState;
         case SET_CHECK_IN:
-            (copyState.data[0].resultCode === 0) ? copyState.checkedIn = true : copyState.checkedIn = false;
+            if (copyState.dataFromServer[0].resultCode === 0) {copyState.checkedIn = true}
             return copyState;
         default:
             return state;

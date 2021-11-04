@@ -1,0 +1,9 @@
+.blockName {
+    position: relative;
+    bottom: 25px;
+}
+
+.blockName span {
+    color: white;
+    font-size: 25px;
+}

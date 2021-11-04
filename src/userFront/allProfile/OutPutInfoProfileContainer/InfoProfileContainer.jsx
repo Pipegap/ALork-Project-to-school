@@ -32,7 +32,7 @@ class InfoProfileCC extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        dataBase: state.profilePage.infoUser[0],
+        dataBase: state.profilePage.otherUserInfo[0],
     }
 }
 

@@ -27,4 +27,16 @@
 .avatarLink {
     position: relative;
     right: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.avatarLink div {
+    position: relative;
+    left: 15px;
+}
+
+.userName {
+    color: white;
+    font-size: 20px;
 }

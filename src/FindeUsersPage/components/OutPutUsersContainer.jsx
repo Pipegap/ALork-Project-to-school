@@ -19,7 +19,9 @@ class OutPutUsersAPIContainer extends React.Component{
     pagesArr = [];
 
     componentDidMount () {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${this.props.selectedPage}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${this.props.selectedPage}`, {
+            withCredentials: true
+        }).then(response => {
             this.props.setUsersAC(response.data.items);
             this.props.setPageIdAC(response.data.items);
             // this.props.setTotalCount(response.data.totalCount)
@@ -37,7 +39,7 @@ class OutPutUsersAPIContainer extends React.Component{
             return <NavLink to={`/findeUsers/${el.id}`}><OneExUser pageId={el.pageId} key={el.id}
                                                                    followed={el.followed} id={el.id}
                                                                    photos={el.photos} name={el.name}
-                                                                   toggleFollow={this.props.toggleFollowAC}/></NavLink>
+                                                                   toggleFollow={this.props.toggleFollowAC} state={this.props.state}/></NavLink>
         });
         return oneUser;
     }
@@ -90,6 +92,7 @@ let mapStateToProps = (state) => {
         pageCount: state.usersPage.pageCount,
         totalCountUsers: state.usersPage.totalUsers,
         selectedPage: state.usersPage.selectedPage,
+        state: state,
     };
 };
 
