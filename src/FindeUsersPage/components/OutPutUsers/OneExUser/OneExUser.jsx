@@ -3,38 +3,29 @@ import classes from './OneExUser.module.css';
 import {NavLink} from "react-router-dom";
 import userImg from '../../../../assets/images/userImg.png';
 import axios from "axios";
+import {subscriberAPI} from "../../../../API/apiRequsets";
 
 class OneExUser extends React.Component{
 
-    subscriber = async () => {
+    subscriber = () => {
             if (this.props.followed === false) {
                 try {
-                    await axios.post(`https://social-network.samuraijs.com/api/1.0/follow/` + this.props.id, {}, {
-                        withCredentials: true,
-                        headers: {
-                            'API-KEY': '2e59a84e-1059-46ce-b1b1-947730f9d7fc'
-                        }
-                    }).then(response => {
-                        console.log(response.data);
+                    subscriberAPI.subscribe(this.props.id).then(data => {
+                        console.log(data);
+                        this.props.toggleFollow(this.props.pageId);
                     });
                 } catch (error) {
-                    console.log(error);
+                    console.log('Ошибка - ' + error);
                 }
-                this.props.toggleFollow(this.props.pageId)
             } else {
                 try {
-                    await axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/` + this.props.id, {
-                        withCredentials: true,
-                        headers: {
-                            'API-KEY': '2e59a84e-1059-46ce-b1b1-947730f9d7fc'
-                        }
-                    }).then(response => {
-                        console.log(response.data);
+                    subscriberAPI.unsubscribe(this.props.id).then(data => {
+                        console.log(data);
+                        this.props.toggleFollow(this.props.pageId);
                     });
                 } catch (error) {
-                    console.log(error);
+                    console.log('Ошибка - ' + error);
                 }
-                this.props.toggleFollow(this.props.pageId)
             }
         }
 

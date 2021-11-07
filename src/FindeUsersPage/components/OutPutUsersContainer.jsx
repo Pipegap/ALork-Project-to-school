@@ -11,6 +11,7 @@ import OneExUser from "./OutPutUsers/OneExUser/OneExUser";
 import OutPutUsers from "./OutPutUsers/OneExUser/OutPutUsers";
 import preloader from "./../../assets/images/Double Ring-2.1s-200px.svg";
 import classes from "./OutPutPage.module.css"
+import {usersAPI} from "../../API/apiRequsets";
 
 class OutPutUsersAPIContainer extends React.Component{
 
@@ -19,11 +20,9 @@ class OutPutUsersAPIContainer extends React.Component{
     pagesArr = [];
 
     componentDidMount () {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${this.props.selectedPage}`, {
-            withCredentials: true
-        }).then(response => {
-            this.props.setUsersAC(response.data.items);
-            this.props.setPageIdAC(response.data.items);
+        usersAPI.setUsers(this.props.pageCount, this.props.selectedPage).then(data => {
+            this.props.setUsersAC(data.items);
+            this.props.setPageIdAC(data.items);
             // this.props.setTotalCount(response.data.totalCount)
         });
     }
@@ -48,14 +47,15 @@ class OutPutUsersAPIContainer extends React.Component{
     changePage = (int) => {
         this.props.clearUserPageAC();
         this.props.changePageBtnAC(int);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${int}`).then(response => {
-            this.props.setUsersAC(response.data.items);
-            this.props.setPageIdAC(response.data.items);
+        usersAPI.setUsers(this.props.pageCount, int).then(data => {
+            this.props.setUsersAC(data.items);
+            this.props.setPageIdAC(data.items);
 
         })};
 
     pagesCountNum = (this.props.totalCountUsers % this.props.pageCount !== 0) ? (this.props.totalCountUsers / this.props.pageCount) + 1 :
         this.props.totalCountUsers / this.props.pageCount;
+
     pagesCount = () => {
         if (this.pagesArr.length === 0 && this.total === 0) {
             for (let i = 1; i <= this.pagesCountNum; i++) {
@@ -79,7 +79,8 @@ class OutPutUsersAPIContainer extends React.Component{
                     pagesCount={this.pagesCount} changePage={this.changePage}
                     oneUser={this.oneUser} onChange={this.onChange}
                     pagesArr={this.pagesArr} searchArea={this.searchArea}
-                    selectedPage={this.props.selectedPage} textSearch={this.props.dataBaseUserPage.textSearch}/> : <img className={classes.downloading} src={preloader}/>}
+                    selectedPage={this.props.selectedPage} textSearch={this.props.dataBaseUserPage.textSearch}/>
+                    : <img className={classes.downloading} src={preloader}/>}
             </div>
         );
     };

@@ -4,7 +4,7 @@ import MakePostContainer from "../components/MyPostsContainer/makePostsContainer
 import OtherMyPostsContainer from "../components/posts/block/otherMyPostsContainer";
 import InfoProfileContainer from "./OutPutInfoProfileContainer/InfoProfileContainer";
 
-function ProfileContent(props) {
+function ProfileContent() {
 
     return (
         <div className='content'>

@@ -1,18 +1,18 @@
 import React from "react";
 import ProfileContent from "./profileContent";
-import axios from "axios";
 import {connect} from "react-redux";
 import {setInfoProfileUserAC, setOthUserProfileAC} from "../../Redux/reducers/profileReducer";
 import {withRouter} from "react-router-dom";
+import {profileAPI} from "../../API/apiRequsets";
 
 class ProfileContentContainer extends React.Component{
     componentDidMount() {
         let userId = this.props.match.params.userId;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${(!userId) ? 2 : userId}`).then(response => {
-            this.props.setOthUserProfileAC(response.data);
+        profileAPI.setOtherUsersInfo(userId).then(data => {
+            this.props.setOthUserProfileAC(data);
         });
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
-            this.props.setInfoProfileUserAC(response.data);
+        profileAPI.setUserInfo().then(data => {
+            this.props.setInfoProfileUserAC(data);
         });
     }
     render() {
@@ -22,12 +22,12 @@ class ProfileContentContainer extends React.Component{
     }
 };
 
+
 const mapStateToProps = (state) => {
     return {
-        infoUser: state.profilePage.infoUser,
-        othUserInfo: state.profilePage.otherUserInfo,
+        state: state,
     }
 }
 
 let ContainerComponentUrlData = withRouter(ProfileContentContainer);
-export default connect(mapStateToProps, {setOthUserProfileAC, setInfoProfileUserAC})(ContainerComponentUrlData);
+export default connect(mapStateToProps,{setOthUserProfileAC, setInfoProfileUserAC})(ContainerComponentUrlData);
