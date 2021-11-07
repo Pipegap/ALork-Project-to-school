@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    changePageBtnAC, clearUserPageAC,
+    changePageBtnAC, clearUserPageAC, getResponseAC,
     newTextSearchAC, setPageIdAC,
     setUsersAC, toggleFollowAC,
 } from "../../Redux/reducers/userReducer";
@@ -38,7 +38,8 @@ class OutPutUsersAPIContainer extends React.Component{
             return <NavLink to={`/findeUsers/${el.id}`}><OneExUser pageId={el.pageId} key={el.id}
                                                                    followed={el.followed} id={el.id}
                                                                    photos={el.photos} name={el.name}
-                                                                   toggleFollow={this.props.toggleFollowAC} state={this.props.state}/></NavLink>
+                                                                   toggleFollow={this.props.toggleFollowAC} state={this.props.state}
+                                                                    getResponse={this.props.getResponseAC}/></NavLink>
         });
         return oneUser;
     }
@@ -99,4 +100,4 @@ let mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, {newTextSearchAC, toggleFollowAC, setUsersAC, setPageIdAC, changePageBtnAC, clearUserPageAC})(OutPutUsersAPIContainer);
+export default connect(mapStateToProps, {newTextSearchAC, toggleFollowAC, setUsersAC, setPageIdAC, changePageBtnAC, clearUserPageAC, getResponseAC})(OutPutUsersAPIContainer);

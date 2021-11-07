@@ -4,7 +4,8 @@ const searchNewText = 'SEARCH_NEW_TEXT',
         setPageId = 'SET_PAGE_ID',
         changePage = 'CHANGE_PAGE',
         setTotalCountUsers = 'SET_TOTAL_COUNT',
-        clearUserPage = 'CLEAR_USER_PAGE';
+        clearUserPage = 'CLEAR_USER_PAGE',
+        getResponse = 'GET_RESPONSE';
 
 const initState = {
     userPage: [],
@@ -13,6 +14,7 @@ const initState = {
     textSearch: '',
     selectedPage: 1,
     pagesCount : 5,
+    subscribingRequest: true,
 };
 
 
@@ -52,6 +54,9 @@ const userReducer = (state = initState, action) => {
         case clearUserPage:
             copyState.userPage.length = 0;
             return copyState;
+        case getResponse:
+            copyState.subscribingRequest = action.value;
+            return copyState;
         default:
             return state;
     }
@@ -67,4 +72,5 @@ export const newTextSearchAC = (text) => ({type:searchNewText, text:text}),
             setPageIdAC = (arr) => ({type: setPageId, arr: arr}),
             changePageBtnAC = (int) => ({type: changePage, int: int}),
             setTotalCountAC = (totalCount) => ({type: setTotalCountUsers, totalCount: totalCount}),
-            clearUserPageAC = () => ({type: clearUserPage});
+            clearUserPageAC = () => ({type: clearUserPage}),
+            getResponseAC = (value) => ({type: getResponse, value: value});
