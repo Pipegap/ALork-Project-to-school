@@ -1,17 +1,11 @@
 import React from "react";
-import {
-    changePageBtnAC, clearUserPageAC, getResponseAC,
-    newTextSearchAC, setPageIdAC,
-    setUsersAC, toggleFollowAC,
-} from "../../Redux/reducers/userReducer";
+import {getUsersTC, newTextSearchAC, subscriberTC} from "../../Redux/reducers/userReducer";
 import {connect} from "react-redux";
-import axios from "axios";
 import {NavLink} from "react-router-dom";
 import OneExUser from "./OutPutUsers/OneExUser/OneExUser";
 import OutPutUsers from "./OutPutUsers/OneExUser/OutPutUsers";
 import preloader from "./../../assets/images/Double Ring-2.1s-200px.svg";
 import classes from "./OutPutPage.module.css"
-import {usersAPI} from "../../API/apiRequsets";
 
 class OutPutUsersAPIContainer extends React.Component{
 
@@ -20,11 +14,7 @@ class OutPutUsersAPIContainer extends React.Component{
     pagesArr = [];
 
     componentDidMount () {
-        usersAPI.setUsers(this.props.pageCount, this.props.selectedPage).then(data => {
-            this.props.setUsersAC(data.items);
-            this.props.setPageIdAC(data.items);
-            // this.props.setTotalCount(response.data.totalCount)
-        });
+        this.props.getUsersTC(this.props.usersOnOnePage, this.props.selectedPage, this.props.users);
     }
 
 
@@ -35,27 +25,24 @@ class OutPutUsersAPIContainer extends React.Component{
 
     oneUser = () => {
         const oneUser = this.props.dataBaseUserPage.userPage.map(el => {
-            return <NavLink to={`/findeUsers/${el.id}`}><OneExUser pageId={el.pageId} key={el.id}
-                                                                   followed={el.followed} id={el.id}
-                                                                   photos={el.photos} name={el.name}
-                                                                   toggleFollow={this.props.toggleFollowAC} state={this.props.state}
-                                                                    getResponse={this.props.getResponseAC}/></NavLink>
+            return <NavLink to={`/findeUsers/${el.id}`} className={classes.nawLink}>
+                <OneExUser
+                    pageId={el.pageId} key={el.id}
+                    followed={el.followed} id={el.id}
+                    photos={el.photos} name={el.name}
+                    state={this.props.state} subscriber={this.props.subscriberTC}
+                /></NavLink>
         });
         return oneUser;
     }
 
 
     changePage = (int) => {
-        this.props.clearUserPageAC();
-        this.props.changePageBtnAC(int);
-        usersAPI.setUsers(this.props.pageCount, int).then(data => {
-            this.props.setUsersAC(data.items);
-            this.props.setPageIdAC(data.items);
+        this.props.getUsersTC(this.props.usersOnOnePage, int, this.props.users);
+    };
 
-        })};
-
-    pagesCountNum = (this.props.totalCountUsers % this.props.pageCount !== 0) ? (this.props.totalCountUsers / this.props.pageCount) + 1 :
-        this.props.totalCountUsers / this.props.pageCount;
+    pagesCountNum = (this.props.totalCountUsers % this.props.usersOnOnePage !== 0) ? (this.props.totalCountUsers / this.props.usersOnOnePage) + 1 :
+        this.props.totalCountUsers / this.props.usersOnOnePage;
 
     pagesCount = () => {
         if (this.pagesArr.length === 0 && this.total === 0) {
@@ -91,13 +78,14 @@ class OutPutUsersAPIContainer extends React.Component{
 let mapStateToProps = (state) => {
     return {
         dataBaseUserPage: state.usersPage,
-        pageCount: state.usersPage.pageCount,
+        usersOnOnePage: state.usersPage.usersOnOnePage,
         totalCountUsers: state.usersPage.totalUsers,
         selectedPage: state.usersPage.selectedPage,
+        users: state.usersPage.userPage,
         state: state,
     };
 };
 
 
 
-export default connect(mapStateToProps, {newTextSearchAC, toggleFollowAC, setUsersAC, setPageIdAC, changePageBtnAC, clearUserPageAC, getResponseAC})(OutPutUsersAPIContainer);
+export default connect(mapStateToProps, {getUsersTC ,newTextSearchAC, subscriberTC})(OutPutUsersAPIContainer);

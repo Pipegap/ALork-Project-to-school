@@ -1,20 +1,23 @@
-const searchNewText = 'SEARCH_NEW_TEXT',
+import {subscriberAPI, usersAPI} from "../../API/apiRequsets";
+
+const   searchNewText = 'SEARCH_NEW_TEXT',
         toggleFollow = 'ToggleFollow',
         setUsers = 'SET_USERS',
         setPageId = 'SET_PAGE_ID',
         changePage = 'CHANGE_PAGE',
         setTotalCountUsers = 'SET_TOTAL_COUNT',
         clearUserPage = 'CLEAR_USER_PAGE',
-        getResponse = 'GET_RESPONSE';
+        isLoading = 'IS_LOADING',
+        clearSubscribingId = 'CLEAR_SUBSCRIBING_ID';
 
 const initState = {
     userPage: [],
-    pageCount: 25,
+    usersOnOnePage: 25,
     totalUsers: 963,
     textSearch: '',
     selectedPage: 1,
-    pagesCount : 5,
-    subscribingRequest: true,
+    pagesCount: 5,
+    subscribingRequests: [],
 };
 
 
@@ -54,8 +57,11 @@ const userReducer = (state = initState, action) => {
         case clearUserPage:
             copyState.userPage.length = 0;
             return copyState;
-        case getResponse:
-            copyState.subscribingRequest = action.value;
+        case isLoading:
+            copyState.subscribingRequests.push(action.id);
+            return copyState;
+        case clearSubscribingId:
+            copyState.subscribingRequests.length = 0;
             return copyState;
         default:
             return state;
@@ -66,6 +72,7 @@ const userReducer = (state = initState, action) => {
 
 export default userReducer;
 
+//---------------ActionMakers-----------------------
 export const newTextSearchAC = (text) => ({type:searchNewText, text:text}),
             toggleFollowAC = (id) => ({type: toggleFollow, userId: id}),
             setUsersAC= (users) => ({type: setUsers, users: users}),
@@ -73,4 +80,38 @@ export const newTextSearchAC = (text) => ({type:searchNewText, text:text}),
             changePageBtnAC = (int) => ({type: changePage, int: int}),
             setTotalCountAC = (totalCount) => ({type: setTotalCountUsers, totalCount: totalCount}),
             clearUserPageAC = () => ({type: clearUserPage}),
-            getResponseAC = (value) => ({type: getResponse, value: value});
+            isLoadingAC = (id) => ({type: isLoading, id: id,}),
+            clearSubscribingIdAC = () => ({type: clearSubscribingId});
+
+
+//---------------ThunkMakers-----------------------
+export const getUsersTC = (usersOnOnePage, selectedPage, users) => {
+    return (dispatch) => {
+        if (users.length !== 0) dispatch(clearUserPageAC());
+        dispatch(changePageBtnAC(selectedPage));
+        usersAPI.setUsers(usersOnOnePage, selectedPage).then(data => {
+            dispatch(setUsersAC(data.items));
+            dispatch(setPageIdAC(data.items));
+        });
+    }
+}
+
+export const subscriberTC = (followed, id, pageId) => {
+    return (dispatch) => {
+        if (!followed) {
+            subscriberAPI.subscribe(id).then(data => {
+                console.log(data);
+                dispatch(toggleFollowAC(pageId));
+                dispatch(clearSubscribingIdAC());
+            }).catch(err => { console.log('Error - ' + err) })
+        } else {
+            subscriberAPI.unsubscribe(id).then(data => {
+                console.log(data);
+                dispatch(toggleFollowAC(pageId));
+                dispatch(clearSubscribingIdAC());
+            }).catch(err => { console.log('Error - ' + err) })
+        }
+    }
+
+}
+

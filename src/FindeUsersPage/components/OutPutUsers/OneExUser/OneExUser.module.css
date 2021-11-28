@@ -6,18 +6,19 @@
 
 .btnFollow {
     margin-top: 15px;
-    margin-left: -10px;
+    margin-left: 0;
 }
 
-.btnFollow a {
+.btnFollow button {
     border-radius: 15px;
     color: white;
     padding: 10px 20px;
-    background-color: #0f1215 ;
+    background-color: #0f1215;
 }
 
-.btnFollow a:hover {
+.btnFollow button:hover {
     background-color: #000000;
+    cursor: pointer;
 }
 
 .block {
@@ -32,7 +33,6 @@
 .block:hover {
     background-color: #1a2025;
     border-radius: 30px;
-    cursor: pointer;
 }
 
 

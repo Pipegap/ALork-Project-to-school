@@ -23,11 +23,6 @@ class ProfileContentContainer extends React.Component{
 };
 
 
-const mapStateToProps = (state) => {
-    return {
-        state: state,
-    }
-}
 
 let ContainerComponentUrlData = withRouter(ProfileContentContainer);
-export default connect(mapStateToProps,{setOthUserProfileAC, setInfoProfileUserAC})(ContainerComponentUrlData);
+export default connect(null,{setOthUserProfileAC, setInfoProfileUserAC})(ContainerComponentUrlData);
