@@ -1,4 +1,4 @@
-import {subscriberAPI, usersAPI} from "../../API/apiRequsets";
+import {authAPI, subscriberAPI, usersAPI} from "../../API/apiRequsets";
 
 const   searchNewText = 'SEARCH_NEW_TEXT',
         toggleFollow = 'ToggleFollow',
@@ -80,7 +80,6 @@ export const newTextSearchAC = (text) => ({type:searchNewText, text:text}),
             changePageBtnAC = (int) => ({type: changePage, int: int}),
             setTotalCountAC = (totalCount) => ({type: setTotalCountUsers, totalCount: totalCount}),
             clearUserPageAC = () => ({type: clearUserPage}),
-            isLoadingAC = (id) => ({type: isLoading, id: id,}),
             clearSubscribingIdAC = () => ({type: clearSubscribingId});
 
 
@@ -112,6 +111,6 @@ export const subscriberTC = (followed, id, pageId) => {
             }).catch(err => { console.log('Error - ' + err) })
         }
     }
-
 }
+
 

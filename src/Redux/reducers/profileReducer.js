@@ -1,3 +1,5 @@
+import {profileAPI} from "../../API/apiRequsets";
+
 const newTextPost = 'NEW_TEXT_POST',
     createNewPost = 'CREATE_NEW_POST',
     toggleLike = 'ADD_LIKE',
@@ -76,5 +78,17 @@ export const addPostAC = (avatarUser) => ({type: createNewPost, linkAvatar: avat
             deletePostAC = (postId) => ({type: deletePost, id: postId}),
             setOthUserProfileAC = (profileInfo) => ({type: setOthUserProfile, profileInfo: profileInfo}),
             setInfoProfileUserAC = (profileInfo) => ({type: setInfoProfileUser, profileInfo: profileInfo});
+
+
+export const setUsersInfoTC = (userId) => {
+    return (dispatch) => {
+        profileAPI.setOtherUsersInfo(userId).then(data => {
+            dispatch(setOthUserProfileAC(data));
+        });
+        profileAPI.setUserInfo().then(data => {
+            dispatch(setInfoProfileUserAC(data));
+        });
+    }
+}
 
 export default profileReducer;

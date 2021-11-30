@@ -1,3 +1,5 @@
+import {authAPI} from "../../API/apiRequsets";
+
 const SET_DATA_FROM_SERVER = 'DATA_FROM_SERVER',
 SET_CHECK_IN = 'SET_CHECK_IN';
 
@@ -29,6 +31,16 @@ const autherReducer = (state = initState, action) => {
 
 export const setDataFromServerAC = (data) => ({type: SET_DATA_FROM_SERVER, data: data}),
 setCheckInAC = () => ({type: SET_CHECK_IN});
+
+
+export const authUserTC = () => {
+    return (dispatch) => {
+        authAPI.authUser().then(data => {
+            dispatch(setDataFromServerAC(data));
+            dispatch(setCheckInAC());
+        });
+    }
+}
 
 export default autherReducer;
 

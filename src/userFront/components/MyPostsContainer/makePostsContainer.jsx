@@ -34,4 +34,4 @@ let mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, {addPostAC, newTextPostAC,})(MakePostsClassComponent);;
+export default connect(mapStateToProps, {addPostAC, newTextPostAC,})(MakePostsClassComponent);

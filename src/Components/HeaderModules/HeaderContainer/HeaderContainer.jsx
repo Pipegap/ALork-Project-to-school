@@ -1,16 +1,12 @@
 import React from "react";
 import Header from "./Header/header";
 import {connect} from "react-redux";
-import {setCheckInAC, setDataFromServerAC,} from "../../../Redux/reducers/autherReducer";
-import {authAPI} from "../../../API/apiRequsets";
+import {authUserTC} from "../../../Redux/reducers/autherReducer";
 
 class HeaderCC extends React.Component {
 
     componentDidMount() {
-        authAPI.authUser().then(data => {
-            this.props.setDataFromServerAC(data);
-            this.props.setCheckInAC();
-        });
+        this.props.authUserTC();
     };
 
     render() {
@@ -27,4 +23,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {setDataFromServerAC, setCheckInAC})(HeaderCC)
+export default connect(mapStateToProps, {authUserTC})(HeaderCC)
