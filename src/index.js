@@ -9,7 +9,7 @@ export const renderApp = () => {
     ReactDOM.render(
         <React.StrictMode>
             <Provider store={store}>
-                <App store={store}/>
+                <App store={store} state={store.getState()}/>
             </Provider>
         </React.StrictMode>,
         document.getElementById('root')

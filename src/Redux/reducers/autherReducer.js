@@ -42,5 +42,6 @@ export const authUserTC = () => {
     }
 }
 
+
 export default autherReducer;
 

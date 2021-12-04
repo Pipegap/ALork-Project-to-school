@@ -1,6 +1,7 @@
 import React from "react";
 import preloader from "../../../../assets/images/Double Ring-2.1s-200px.svg"
 import classes from "./InfoProfile.module.css"
+import userIMG from './../../../../assets/images/userImg.png';
 
 function InfoProfile(props) {
 
@@ -12,7 +13,7 @@ function InfoProfile(props) {
     return (
         <div className='user'>
             <div className='photo'>
-                <img src={props.dataBase.photos.small} alt="аватарка" className='userPhoto'/>
+                <img src={!props.dataBase.photos.small ? userIMG : props.dataBase.photos.small} alt="аватарка" className='userPhoto'/>
             </div>
             <div className='info'>
                 <div className={classes.blockName}>

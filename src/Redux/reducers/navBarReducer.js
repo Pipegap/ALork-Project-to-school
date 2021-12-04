@@ -13,7 +13,7 @@ let initState = {
         toNews: '/news',
         toFriends: '/friends',
         toMusik: '/musik',
-        toUsers: '/findeUsers',
+        toUsers: '/findUsers',
         toSettings: '/settings',
     },
 };

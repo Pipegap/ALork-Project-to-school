@@ -8,13 +8,13 @@ import OutPutMusik from "./Musik/components/OutPut/OutPutMusik";
 import OutPutSettings from "./Settings/components/OutPut/OutPutSettings";
 import OutPutFriends from './Friends/components/OutPutFriends/OutPutFriends';
 import OutPutPage from "./FindeUsersPage/components/OutPutPage";
+import MainOutPutLogin from './Login/components/MainOutPutLogin/MainOutPutLogin'
 import ProfileContentContainer from "./userFront/allProfile/ProfileContentContainer";
 import HeaderCC from "./Components/HeaderModules/HeaderContainer/HeaderContainer";
 
 
 
 function App (props) {
-
     return (
         <BrowserRouter>
             <div className="MyApp">
@@ -26,8 +26,9 @@ function App (props) {
                     <Route path='/news' component={OutPutNews}/>
                     <Route path='/friends' component={OutPutFriends}/>
                     <Route path='/musik' component={OutPutMusik}/>
-                    <Route path='/findeUsers' render={() => <OutPutPage />}/>
+                    <Route path='/findUsers' component={OutPutPage}/>
                     <Route path='/settings' component={OutPutSettings}/>
+                    <Route path='/login' render={() => <MainOutPutLogin />}/>
                 </div>
             </div>
         </BrowserRouter>

@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
     return {
+        auth: state.auth.checkedIn,
         dataBaseDialogers: state.dialogsPage,
     };
 };

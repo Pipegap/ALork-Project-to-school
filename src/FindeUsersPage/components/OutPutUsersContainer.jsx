@@ -25,7 +25,7 @@ class OutPutUsersAPIContainer extends React.Component{
 
     oneUser = () => {
         const oneUser = this.props.dataBaseUserPage.userPage.map(el => {
-            return <NavLink to={`/findeUsers/${el.id}`} className={classes.nawLink}>
+            return <NavLink to={`/findUsers/${el.id}`} className={classes.nawLink}>
                 <OneExUser
                     pageId={el.pageId} key={el.id}
                     followed={el.followed} id={el.id}
