@@ -6,6 +6,7 @@ import OneExUser from "./OutPutUsers/OneExUser/OneExUser";
 import OutPutUsers from "./OutPutUsers/OneExUser/OutPutUsers";
 import preloader from "./../../assets/images/Double Ring-2.1s-200px.svg";
 import classes from "./OutPutPage.module.css"
+import {withAuthRedirect} from "../../HOC/components/MainFunc/authRedirect";
 
 class OutPutUsersAPIContainer extends React.Component{
 
@@ -61,6 +62,7 @@ class OutPutUsersAPIContainer extends React.Component{
     };
 
     render() {
+
         return (
             <div>
                 {this.props.dataBaseUserPage.userPage.length !== 0 ? <OutPutUsers
@@ -88,4 +90,4 @@ let mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, {getUsersTC ,newTextSearchAC, subscriberTC})(OutPutUsersAPIContainer);
+export default connect(mapStateToProps, {getUsersTC ,newTextSearchAC, subscriberTC})(withAuthRedirect(OutPutUsersAPIContainer));

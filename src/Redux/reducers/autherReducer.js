@@ -38,7 +38,9 @@ export const authUserTC = () => {
         authAPI.authUser().then(data => {
             dispatch(setDataFromServerAC(data));
             dispatch(setCheckInAC());
-        });
+        }).catch(err => {
+            console.log(`Ошибка - ${err}`);
+        })
     }
 }
 

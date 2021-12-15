@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import classes from "./BlockMessages.module.css";
 import OneExMessage from "./oneExMessage/oneExMessage";
 import OutPutBlockMessages from "./oneExMessage/OutPutBlockMessages";
+import {withAuthRedirect} from "../../../HOC/components/MainFunc/authRedirect";
 
 
 class BlockMessagesClassComponent extends React.Component{
@@ -14,7 +15,7 @@ class BlockMessagesClassComponent extends React.Component{
     onChange = () => {
         let text = this.makeRef.current.value;
         this.props.newTextMessageAC(text);
-        (text === "") ? this.sendImg.current.classList.add(classes.noneDisplay) : this.sendImg.current.classList.remove(classes.noneDisplay);
+        (!text) ? this.sendImg.current.classList.add(classes.noneDisplay) : this.sendImg.current.classList.remove(classes.noneDisplay);
 
     };
 
@@ -44,6 +45,7 @@ class BlockMessagesClassComponent extends React.Component{
 }
 
 
+
 let mapStateToProps = (state) => {
     return {
         dataBase: state,
@@ -52,6 +54,6 @@ let mapStateToProps = (state) => {
 
 
 
-let BlockMessagesContainer = connect(mapStateToProps, {createNewMessageAC, newTextMessageAC,})(BlockMessagesClassComponent);
+let BlockMessagesContainer = connect(mapStateToProps, {createNewMessageAC, newTextMessageAC})(withAuthRedirect(BlockMessagesClassComponent));
 
 export default BlockMessagesContainer;

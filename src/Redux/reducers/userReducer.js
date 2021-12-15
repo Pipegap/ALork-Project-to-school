@@ -73,12 +73,12 @@ const userReducer = (state = initState, action) => {
 export default userReducer;
 
 //---------------ActionMakers-----------------------
-export const newTextSearchAC = (text) => ({type:searchNewText, text:text}),
+export const newTextSearchAC = (text) => ({type:searchNewText, text}),
             toggleFollowAC = (id) => ({type: toggleFollow, userId: id}),
-            setUsersAC= (users) => ({type: setUsers, users: users}),
-            setPageIdAC = (arr) => ({type: setPageId, arr: arr}),
-            changePageBtnAC = (int) => ({type: changePage, int: int}),
-            setTotalCountAC = (totalCount) => ({type: setTotalCountUsers, totalCount: totalCount}),
+            setUsersAC= (users) => ({type: setUsers, users}),
+            setPageIdAC = (arr) => ({type: setPageId, arr}),
+            changePageBtnAC = (int) => ({type: changePage, int}),
+            setTotalCountAC = (totalCount) => ({type: setTotalCountUsers, totalCount}),
             clearUserPageAC = () => ({type: clearUserPage}),
             clearSubscribingIdAC = () => ({type: clearSubscribingId});
 

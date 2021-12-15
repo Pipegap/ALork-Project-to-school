@@ -1,11 +1,11 @@
 import axios from "axios";
-
+const APIKey = '47e6bef3-3e58-4548-ac92-37ce2d055703';
 
 const instance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        'API-KEY' : '47e6bef3-3e58-4548-ac92-37ce2d055703',
+        'API-KEY' : APIKey,
     }
 })
 
@@ -42,7 +42,7 @@ export const profileAPI = {
 export const subscriberAPI = {
      async subscribe (id) {
         return await instance.post(`follow/` + id).then(response => {
-            return response.data;
+            return response;
         })
     },
     async unsubscribe (id) {

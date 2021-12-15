@@ -76,8 +76,8 @@ export const addPostAC = (avatarUser) => ({type: createNewPost, linkAvatar: avat
             newTextPostAC = (text) => ({type: newTextPost, newContent: text}),
             toggleLikeAC = (userId) => ({type: toggleLike, id: userId}),
             deletePostAC = (postId) => ({type: deletePost, id: postId}),
-            setOthUserProfileAC = (profileInfo) => ({type: setOthUserProfile, profileInfo: profileInfo}),
-            setInfoProfileUserAC = (profileInfo) => ({type: setInfoProfileUser, profileInfo: profileInfo});
+            setOthUserProfileAC = (profileInfo) => ({type: setOthUserProfile, profileInfo}),
+            setInfoProfileUserAC = (profileInfo) => ({type: setInfoProfileUser, profileInfo});
 
 
 export const setUsersInfoTC = (userId) => {

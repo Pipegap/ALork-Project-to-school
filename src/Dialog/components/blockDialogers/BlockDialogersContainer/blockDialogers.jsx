@@ -1,12 +1,11 @@
 import React from "react";
 import classes from "./blockDialogers.module.css";
 import OneExDialoger from "./oneExDialoger/oneExDialoger";
-import {NavLink, Redirect} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 
 
 function BlockDialogers (props) {
-    if (!props.auth) {return <Redirect to='/login'/>}
 
 
     const dialogerItem = props.dataBaseDialogers.dialogs.map(el => {
