@@ -97,19 +97,10 @@ export const getUsersTC = (usersOnOnePage, selectedPage, users) => {
 
 export const subscriberTC = (followed, id, pageId) => {
     return (dispatch) => {
-        if (!followed) {
-            subscriberAPI.subscribe(id).then(data => {
-                console.log(data);
-                dispatch(toggleFollowAC(pageId));
-                dispatch(clearSubscribingIdAC());
-            }).catch(err => { console.log('Error - ' + err) })
-        } else {
-            subscriberAPI.unsubscribe(id).then(data => {
-                console.log(data);
-                dispatch(toggleFollowAC(pageId));
-                dispatch(clearSubscribingIdAC());
-            }).catch(err => { console.log('Error - ' + err) })
-        }
+        subscriberAPI.toggleSubscriber(id, followed).then(response => {
+            dispatch(toggleFollowAC(pageId));
+            dispatch(clearSubscribingIdAC());
+        }).catch(err => {alert('Действие не выполнено! Код ошибки - ' + err.message.slice(err.message.length - 4, err.message.length))});
     }
 }
 

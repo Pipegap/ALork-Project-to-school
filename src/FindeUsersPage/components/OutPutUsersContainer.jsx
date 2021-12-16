@@ -7,6 +7,7 @@ import OutPutUsers from "./OutPutUsers/OneExUser/OutPutUsers";
 import preloader from "./../../assets/images/Double Ring-2.1s-200px.svg";
 import classes from "./OutPutPage.module.css"
 import {withAuthRedirect} from "../../HOC/components/MainFunc/authRedirect";
+import {compose} from "redux";
 
 class OutPutUsersAPIContainer extends React.Component{
 
@@ -88,6 +89,4 @@ let mapStateToProps = (state) => {
     };
 };
 
-
-
-export default connect(mapStateToProps, {getUsersTC ,newTextSearchAC, subscriberTC})(withAuthRedirect(OutPutUsersAPIContainer));
+export default compose(withAuthRedirect, connect(mapStateToProps, {getUsersTC ,newTextSearchAC, subscriberTC}))(OutPutUsersAPIContainer);

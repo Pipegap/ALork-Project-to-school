@@ -5,6 +5,7 @@ import classes from "./BlockMessages.module.css";
 import OneExMessage from "./oneExMessage/oneExMessage";
 import OutPutBlockMessages from "./oneExMessage/OutPutBlockMessages";
 import {withAuthRedirect} from "../../../HOC/components/MainFunc/authRedirect";
+import {compose} from "redux";
 
 
 class BlockMessagesClassComponent extends React.Component{
@@ -53,7 +54,4 @@ let mapStateToProps = (state) => {
 };
 
 
-
-let BlockMessagesContainer = connect(mapStateToProps, {createNewMessageAC, newTextMessageAC})(withAuthRedirect(BlockMessagesClassComponent));
-
-export default BlockMessagesContainer;
+export default compose(withAuthRedirect, connect(mapStateToProps, {createNewMessageAC, newTextMessageAC}))(BlockMessagesClassComponent);

@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {setUsersInfoTC} from "../../Redux/reducers/profileReducer";
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../HOC/components/MainFunc/authRedirect";
+import {compose} from "redux";
 
 class ProfileContentContainer extends React.Component{
 
@@ -16,10 +17,6 @@ class ProfileContentContainer extends React.Component{
             <ProfileContent />
         )
     }
-};
+}
 
-
-
-
-let ContainerComponentUrlData = withRouter(ProfileContentContainer);
-export default connect(null,{setUsersInfoTC})(withAuthRedirect(ContainerComponentUrlData));
+export default compose(withRouter, withAuthRedirect, connect(null, {setUsersInfoTC}))(ProfileContentContainer);

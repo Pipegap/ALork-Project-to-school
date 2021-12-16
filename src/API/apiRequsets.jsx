@@ -39,15 +39,17 @@ export const profileAPI = {
         });
     },
 };
+
 export const subscriberAPI = {
-     async subscribe (id) {
-        return await instance.post(`follow/` + id).then(response => {
-            return response;
-        })
-    },
-    async unsubscribe (id) {
-        return await instance.delete(`follow/` + id).then(response => {
-            return response.data;
-        })
+    async toggleSubscriber (id, value) {
+        if (!value) {
+            return await instance.post(`follow/${id}`).then(response => {
+                return response.data;
+            });
+        } else {
+            return await instance.delete(`follow/${id}`).then(response => {
+                return response.data;
+            });
+        }
     }
 }
