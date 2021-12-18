@@ -7,3 +7,34 @@
     color: white;
     font-size: 25px;
 }
+
+.editBtnBlock {
+    text-align: center;
+    position: relative;
+    margin-top: 40px;
+    top: -15px;
+}
+
+.editBtnBlock button {
+    padding: 10px 84px;
+    background-color: #1a2025;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 29px;
+    transition: 0s all;
+}
+
+
+.editBtnBlock button:hover {
+    background-color: black;
+}
+.info {
+    display: block;
+}
+
+.contactsEdit {
+    position: relative;
+    margin-top: -16px;
+    top: 40px;
+}

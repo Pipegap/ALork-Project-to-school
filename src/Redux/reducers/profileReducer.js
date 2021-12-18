@@ -5,7 +5,9 @@ const newTextPost = 'NEW_TEXT_POST',
     toggleLike = 'ADD_LIKE',
     deletePost = 'DELETE_POST',
     setOthUserProfile = 'SET_USER_OTH_PROFILE',
-    setInfoProfileUser = 'SET_INFO_PROFILE_USER';
+    setInfoProfileUser = 'SET_INFO_PROFILE_USER',
+    changeNewUserData = 'CHANGE_NEW_USER_DATA',
+    changeTextNewData = 'CHANGE_TEXT_NEW_DATA';
 
 
 let initState = {
@@ -18,6 +20,7 @@ let initState = {
             {photo: 'https://cdnb.artstation.com/p/assets/images/images/000/987/927/large/ricky-martinez-walter-white-by-sparatik-d5ged5r.jpg?1443931882', word: 'MY POST', likes: 2, id: 3, liked:false},
             {photo: 'https://vraki.net/sites/default/files/inline/images/3_76.jpg', word: 'SOMEONE\'S POST', likes: 8, id: 4, liked:false},
         ],
+        newData: [],
         newPostText: '',
 }
 
@@ -64,7 +67,21 @@ const profileReducer = (state = initState, action) => {
             copyState.otherUserInfo.push(action.profileInfo);
             return copyState;
         case setInfoProfileUser:
+            copyState.infoUser.length = 0;
             copyState.infoUser.push(action.profileInfo);
+            return copyState;
+        case changeNewUserData:
+            let dataForChanging = {
+                newName: copyState.otherUserInfo[0].fullName,
+                newStatus: copyState.otherUserInfo[0].aboutMe,
+            }
+            copyState.newData.push(dataForChanging);
+            return copyState;
+        case changeTextNewData:
+            copyState.newData[0].forEach(item => {
+                item.newName = action.name;
+                item.newStatus = action.status;
+            });
             return copyState;
         default:
             return state;
@@ -77,7 +94,9 @@ export const addPostAC = (avatarUser) => ({type: createNewPost, linkAvatar: avat
             toggleLikeAC = (userId) => ({type: toggleLike, id: userId}),
             deletePostAC = (postId) => ({type: deletePost, id: postId}),
             setOthUserProfileAC = (profileInfo) => ({type: setOthUserProfile, profileInfo}),
-            setInfoProfileUserAC = (profileInfo) => ({type: setInfoProfileUser, profileInfo});
+            setInfoProfileUserAC = (profileInfo) => ({type: setInfoProfileUser, profileInfo}),
+            changeNewUserDataAC = () => ({type: changeNewUserData}),
+            changeTextNewDataAC = (name, status) => ({type: changeTextNewData, name, status})
 
 
 export const setUsersInfoTC = (userId) => {

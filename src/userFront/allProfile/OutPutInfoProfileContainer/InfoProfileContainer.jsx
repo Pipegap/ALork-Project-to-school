@@ -1,13 +1,14 @@
 import React from "react";
 import InfoProfile from "./InfoProfile/InfoProfile";
 import {connect} from "react-redux";
+import {changeNewUserDataAC, changeTextNewDataAC} from "../../../Redux/reducers/profileReducer";
 
 
 class InfoProfileCC extends React.Component {
 
 
 
-    showContacts = (obj) => {
+    showContacts = (obj, value) => {
         let finalContactsFormat = [];
         for (let key in obj) {
             if (obj[key] !== null) {
@@ -18,25 +19,32 @@ class InfoProfileCC extends React.Component {
                 finalContactsFormat.push(oneContact);
             }
         }
-        return finalContactsFormat.map(el => {
-            return <span>Мой {el.name} - <a href={el.value} target="_blank"><b>{el.name}</b></a><br/></span>
-        })
+        if (!value) {
+            return finalContactsFormat.map(el => {
+                return <span>Мой {el.name} - <a href={el.value} target="_blank"><b>{el.name}</b></a><br/></span>
+            })
+        } else {
+            return finalContactsFormat.map(el => {
+                return <span>Мой {el.name} - <input type="text" value={el.value}/><br/></span>
+            })
+        }
     }
 
     render() {
         return (
-            <InfoProfile showContacts={this.showContacts} dataBase={this.props.dataBase}/>
+            <InfoProfile showContacts={this.showContacts} changeNewUserDataAC={this.props.changeNewUserDataAC} changeTextNewDataAC={changeTextNewDataAC} parentDataBase={this.props.parentDataBase} dataBase={this.props.dataBase}/>
         )
     }
 }
 
 let mapStateToProps = (state) => {
     return {
+        parentDataBase: state.profilePage,
         dataBase: state.profilePage.otherUserInfo[0],
     }
 }
 
 
-let infoProfile = connect(mapStateToProps)(InfoProfileCC)
+let infoProfile = connect(mapStateToProps, {changeNewUserDataAC, changeTextNewDataAC})(InfoProfileCC)
 
 export default infoProfile;
